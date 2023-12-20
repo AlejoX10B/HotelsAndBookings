@@ -2,10 +2,10 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../../../shared/services';
 
-import { Credentials } from '../../models/credentials.model';
-import { Roles } from '../../../shared/models/user.models';
+import { Credentials } from '../../models';
+import { Roles } from '../../../shared/models';
 
 
 const AgentCredentials = {
