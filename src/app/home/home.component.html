@@ -1,1 +1,35 @@
-<p>home works!</p>
+<body class="p-2">
+    <header>
+        <p-menubar [model]="menuItems">
+            <ng-template pTemplate="start">
+                <div class="mr-5 flex align-items-center flex-column">
+                    <img src="assets/icons/logo.svg" height="38px" class="logo" alt="icon">
+                    <p class="m-0 text-sm"><b>App Hotel</b></p>
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="end">
+                <div class="flex gap-5">
+                    <div class="flex gap-2 align-items-center">
+                        <div class="flex flex-column text-right text-sm">
+                            <b>{{ user.name }} {{ user.lastname }}</b>
+                            <span>{{ user.role | TrueRole }}</span>
+                        </div>
+                        <p-avatar icon="pi pi-user" shape="circle"/>
+                    </div>
+
+                    <p-button label="Cerrar sesión"
+                                icon="pi pi-sign-out"
+                                size="small"
+                                severity="secondary"
+                                (onClick)="logout()"
+                                [outlined]="true"/>
+                </div>
+            </ng-template>
+        </p-menubar>
+    </header>
+
+    <main>
+        <router-outlet/>
+    </main>
+</body>

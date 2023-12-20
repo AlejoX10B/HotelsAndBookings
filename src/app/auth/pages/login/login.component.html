@@ -12,14 +12,14 @@
 
             <div class="mb-3 flex flex-wrap gap-4">
                 <div class="flex align-items-center">
-                    <p-radioButton name="role" value="ADMIN" inputId="cbx_admin"
+                    <p-radioButton name="role" [value]="Roles.AGENT" inputId="cbx_admin"
                                     (onClick)="changeCredentials($event.value)"
                                     [(ngModel)]="credentials.role"/>
                     <label for="cbx_admin" class="ml-2">Agente de Viajes</label>
                 </div>
 
                 <div class="flex align-items-center">
-                    <p-radioButton name="role" value="USER" inputId="cbx_user"
+                    <p-radioButton name="role" [value]="Roles.USER" inputId="cbx_user"
                                     (onClick)="changeCredentials($event.value)"
                                     [(ngModel)]="credentials.role"/>
                     <label for="cbx_user" class="ml-2">Viajero</label>
@@ -38,11 +38,12 @@
                         [(ngModel)]="credentials.password" pInputText required>
             </div>
 
-            <div class="mt-5 flex gap-2">
+            <div class="mt-5 flex gap-2 align-items-center justify-content-center">
                 <p-button styleClass=""
                             label="Limpiar"
                             icon="pi pi-eraser"
                             severity="secondary"
+                            [outlined]="true"
                             type="reset"/>
     
                 <p-button label="Iniciar Sesión"

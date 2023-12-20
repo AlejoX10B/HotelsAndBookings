@@ -1,2 +1,5 @@
 
-export type Roles = 'ADMIN' | 'USER'
+export enum Roles {
+    AGENT = 'AGENT',
+    USER = 'USER'
+}

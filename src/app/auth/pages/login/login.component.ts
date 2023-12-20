@@ -9,15 +9,15 @@ import { Roles } from '../../../shared/models';
 
 
 const AgentCredentials = {
-  email: 'agent@admin.com',
+  email: 'alejo@admin.com',
   password: '12345',
-  role: 'ADMIN'
+  role: Roles.AGENT
 }
 
 const TravelerCredentials = {
-  email: 'user@domain.com',
+  email: 'adri@email.com',
   password: '12345',
-  role: 'USER'
+  role: Roles.USER
 }
 
 
@@ -32,30 +32,29 @@ export class LoginComponent {
   authService = inject(AuthService)
   msgService = inject(MessageService)
 
+  readonly Roles = Roles
   credentials: Credentials = AgentCredentials
 
   changeCredentials(role: Roles) {
-    this.credentials = (role == 'ADMIN')
+    this.credentials = (role == Roles.AGENT)
       ? {...AgentCredentials}
       : {...TravelerCredentials}
   }
 
   onSubmit() {
-    console.log('CREDS', this.credentials)
-
     this.authService.login(this.credentials)
-    .subscribe({
-      next: () => {
-        this.router.navigateByUrl('/')
-      },
-      error: () => {
-        this.msgService.add({
-          severity: 'error',
-          summary: 'Error!',
-          detail: 'No se encontró al usuario'
-        })
-      }
-    })
+      .subscribe({
+        next: () => {
+          this.router.navigateByUrl('/')
+        },
+        error: () => {
+          this.msgService.add({
+            severity: 'error',
+            summary: 'Error!',
+            detail: 'No se encontró al usuario'
+          })
+        }
+      })
   }
 
 }
