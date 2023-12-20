@@ -1,0 +1,16 @@
+{
+    "users": [
+        {
+            "id": "51097ef1-50af-4386-83c9-50ad15c97f9d",
+            "email": "agent@admin.com",
+            "password": "12345",
+            "role": "ADMIN"
+        },
+        {
+            "id": "b564db20-911f-4e2f-b65b-f85233767cfe",
+            "email": "user@domain.com",
+            "password": "12345",
+            "role": "USER"
+        }
+    ]
+}

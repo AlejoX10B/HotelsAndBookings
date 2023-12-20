@@ -1,16 +1,19 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { PrimeNGConfig } from 'primeng/api';
+import { MessageService, PrimeNGConfig } from 'primeng/api';
 
 
 @Component({
   imports: [
     RouterOutlet
   ],
+  providers: [
+    MessageService
+  ],
   standalone: true,
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  template: '<router-outlet/>',
+  styles: ''
 })
 export class AppComponent {
   title = 'AppHotel'

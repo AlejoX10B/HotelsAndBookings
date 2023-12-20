@@ -1,0 +1,57 @@
+<main>
+    <p-card header="Iniciar Sesion" styleClass="login-card">
+        <ng-template pTemplate="header">
+            <img alt="Card" src="assets/img/hotel_login.png"/>
+        </ng-template>
+
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+            <p class="m-0 mb-5">
+                Para iniciar sesión en la aplicación selecciona tu rol 
+                e ingresa tus credenciales.
+            </p>
+
+            <div class="mb-3 flex flex-wrap gap-4">
+                <div class="flex align-items-center">
+                    <p-radioButton name="role" value="ADMIN" inputId="cbx_admin"
+                                    (onClick)="changeCredentials($event.value)"
+                                    [(ngModel)]="credentials.role"/>
+                    <label for="cbx_admin" class="ml-2">Agente de Viajes</label>
+                </div>
+
+                <div class="flex align-items-center">
+                    <p-radioButton name="role" value="USER" inputId="cbx_user"
+                                    (onClick)="changeCredentials($event.value)"
+                                    [(ngModel)]="credentials.role"/>
+                    <label for="cbx_user" class="ml-2">Viajero</label>
+                </div>
+            </div>
+
+            <div class="mb-3 flex flex-column gap-2">
+                <label for="email">Correo electronico</label>
+                <input id="email" type="email" name="email"
+                        [(ngModel)]="credentials.email" pInputText required>
+            </div>
+
+            <div class="flex flex-column gap-2">
+                <label for="password">Contraseña</label>
+                <input id="password" type="password" name="password"
+                        [(ngModel)]="credentials.password" pInputText required>
+            </div>
+
+            <div class="mt-5 flex gap-2">
+                <p-button styleClass=""
+                            label="Limpiar"
+                            icon="pi pi-eraser"
+                            severity="secondary"
+                            type="reset"/>
+    
+                <p-button label="Iniciar Sesión"
+                            icon="pi pi-check"
+                            type="submit"
+                            [disabled]="loginForm.form.invalid"/>
+            </div>
+        </form>
+    </p-card>
+</main>
+
+<p-toast/>
