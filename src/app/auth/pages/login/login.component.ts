@@ -1,9 +1,11 @@
 import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 import { AuthService } from '../../auth.service';
+
 import { Credentials } from '../../models/credentials.model';
 import { Roles } from '../../../shared/models/user.models';
-import { MessageService } from 'primeng/api';
 
 
 const AgentCredentials = {
@@ -26,6 +28,7 @@ const TravelerCredentials = {
 })
 export class LoginComponent {
 
+  router = inject(Router)
   authService = inject(AuthService)
   msgService = inject(MessageService)
 
@@ -42,11 +45,10 @@ export class LoginComponent {
 
     this.authService.login(this.credentials)
     .subscribe({
-      next: (val) => {
-        console.log('USER', val)
+      next: () => {
+        this.router.navigateByUrl('/')
       },
       error: () => {
-        console.error('ERROR')
         this.msgService.add({
           severity: 'error',
           summary: 'Error!',
