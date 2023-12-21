@@ -16,5 +16,15 @@
             "lastname": "Rojas",
             "role": "USER"
         }
+    ],
+    "hotels": [
+        {
+            "id": 1,
+            "name": "Hotel Lancaster House Suites",
+            "location": "Paralela Autonorte No. 106B - 28, Usaquén, 110010 Bogotá, Colombia",
+            "img_url": "https://lh3.googleusercontent.com/proxy/Tm0duzk41y7SIgzr1gu5b6v-gUBXf8u4wlPjpzDq0Cn_12cKh8NgDwY9vnLG9-PO7t01mPvLHO-Cie88di1mlDDFuuroU-ZfbR586uhqD1MNyD8H7IHeDAkyxUzv6XRIhln4LspGYBpQQa_kpRUDanS0k1ir_4c=w472-h352-n-k",
+            "rooms_count": 10,
+            "rooms": []
+        }
     ]
 }

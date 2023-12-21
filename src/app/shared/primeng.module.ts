@@ -6,6 +6,7 @@ import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenubarModule } from 'primeng/menubar';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 
 
@@ -17,6 +18,7 @@ import { ToastModule } from 'primeng/toast';
     InputTextModule,
     MenubarModule,
     RadioButtonModule,
+    TableModule,
     ToastModule
   ]
 })

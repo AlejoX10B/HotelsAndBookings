@@ -7,7 +7,7 @@ import { Roles } from '../models';
 })
 export class RolePipe implements PipeTransform {
 
-  transform(role: Roles): string {
+  transform(role: Roles | undefined): string {
     return (role === Roles.AGENT) ? 'Agente de Viajes' : 'Viajero';
   }
 

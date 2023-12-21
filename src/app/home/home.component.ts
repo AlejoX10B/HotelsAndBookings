@@ -7,7 +7,7 @@ import { AuthService } from '../shared/services';
 import { RolePipe } from '../shared/pipes';
 
 import { AgentMenuItems, UserMenuItems } from '../shared/constants';
-import { Roles } from '../shared/models';
+import { Roles, User } from '../shared/models';
 
 
 @Component({
@@ -27,11 +27,11 @@ export class HomeComponent implements OnInit {
 
   private authService = inject(AuthService)
 
-  user = this.authService.user()
+  user: User | null = this.authService.user()
 
 
   ngOnInit() {
-    this.menuItems = (this.user.role === Roles.AGENT)
+    this.menuItems = (this.user?.role === Roles.AGENT)
       ? AgentMenuItems
       : UserMenuItems
   }

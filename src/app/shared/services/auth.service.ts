@@ -5,6 +5,7 @@ import { Observable, catchError, map, of, tap, throwError } from 'rxjs';
 import { environment as env } from '../../../environments/environment';
 
 import { AuthStatus, Credentials } from '../../auth/models';
+import { User } from '../models';
 
 
 
@@ -17,10 +18,10 @@ export class AuthService {
 
 
   private _authStatus = signal<AuthStatus>(AuthStatus.LoadingAuth)
-  authStatus = computed(() => this._authStatus())
+  authStatus = computed<AuthStatus>(() => this._authStatus())
 
-  private _user = signal<any>(null)
-  user = computed(() => this._user())
+  private _user = signal<User|null>(null)
+  user = computed<User|null>(() => this._user())
 
 
   constructor() {
@@ -28,7 +29,7 @@ export class AuthService {
   }
 
 
-  private _setSession(user: any) {
+  private _setSession(user: any): void {
     localStorage.setItem('userId', user.id)
 
     this._authStatus.set(AuthStatus.Authenticated)
@@ -36,14 +37,14 @@ export class AuthService {
   }
 
 
-  logout() {
+  logout(): void {
     localStorage.removeItem('userId')
 
     this._authStatus.set(AuthStatus.NotAuthenticated)
     this._user.set(null)
   }
 
-  login(credentials: Credentials): Observable<any> {
+  login(credentials: Credentials): Observable<boolean> {
     const url = `${env.backUrl}/${env.routes.users}`
 
     const params = new HttpParams()
@@ -51,7 +52,7 @@ export class AuthService {
       .append('password', credentials.password as string)
       .append('role', credentials.role as string)
     
-    return this.http.get<any>(url, { params })
+    return this.http.get<User[]>(url, { params })
       .pipe(
         map(users => {
           if (users.length === 0) throw new Error('User not found')
@@ -63,7 +64,7 @@ export class AuthService {
       )
   }
 
-  getCurrentUser(): Observable<any> {
+  getCurrentUser(): Observable<boolean> {
     const userId = localStorage.getItem('userId')    
     if (!userId) {
       this.logout()
@@ -71,9 +72,10 @@ export class AuthService {
     }
 
     const url = `${env.backUrl}/${env.routes.users}/${userId}`
-    return this.http.get<any>(url)
+    return this.http.get<User>(url)
       .pipe(
         tap(user => this._setSession(user)),
+        map(() => true),
         catchError(e => {
           this._authStatus.set(AuthStatus.NotAuthenticated)
           return throwError(() => e.message)

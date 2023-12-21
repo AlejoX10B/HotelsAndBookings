@@ -1,5 +1,15 @@
 
+body {
+    height: 100vh;
+    height: 100svh;
+
+    main {
+        height: 100%;
+        height: calc(100svh - 62.2px - (0.5rem * 2));
+    }
+}
+
 .logo {
-    height: 38px;
+    height: 32px;
     padding: 0.5rem;
 }

@@ -3,8 +3,8 @@
         <p-menubar [model]="menuItems">
             <ng-template pTemplate="start">
                 <div class="mr-5 flex align-items-center flex-column">
-                    <img src="assets/icons/logo.svg" height="38px" class="logo" alt="icon">
-                    <p class="m-0 text-sm"><b>App Hotel</b></p>
+                    <img src="assets/icons/logo.svg" height="32px" class="logo" alt="icon">
+                    <p class="m-0 text-xs"><b>App Hotel</b></p>
                 </div>
             </ng-template>
 
@@ -12,8 +12,8 @@
                 <div class="flex gap-5">
                     <div class="flex gap-2 align-items-center">
                         <div class="flex flex-column text-right text-sm">
-                            <b>{{ user.name }} {{ user.lastname }}</b>
-                            <span>{{ user.role | TrueRole }}</span>
+                            <b>{{ user?.name }} {{ user?.lastname }}</b>
+                            <span>{{ user?.role | TrueRole }}</span>
                         </div>
                         <p-avatar icon="pi pi-user" shape="circle"/>
                     </div>
@@ -29,7 +29,7 @@
         </p-menubar>
     </header>
 
-    <main>
+    <main class="pt-6 pb-4 px-3">
         <router-outlet/>
     </main>
 </body>
