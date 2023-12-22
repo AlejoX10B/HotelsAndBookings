@@ -1,0 +1,44 @@
+<h1>{{ hotel().name }}</h1>
+
+<section class="grid mt-3">
+    <div class="col">
+        <img [src]="hotel().img_url"
+             [alt]="hotel().id+'-'+hotel().name"
+             height="350px"
+             class="border-round">
+    </div>
+
+    <div class="col">
+        <ul class="list-none p-0">
+            <li class="mb-6">
+                <div class="flex gap-2 mb-2">
+                    <i class="pi pi-map-marker text-primary"></i>
+                    <label class="font-bold">Ubicación: </label>
+                </div>
+                <span class="ml-4">{{ hotel().location }}</span>
+            </li>
+            <li>
+                <div class="flex gap-2 mb-2">
+                    <i class="pi pi-verified text-primary"></i>
+                    <label class="font-bold">Calificación: </label>
+                </div>
+                <p-rating class="ml-4" [ngModel]="hotel().stars" [readonly]="true" [cancel]="false"/>
+            </li>
+        </ul>
+        
+        <div class="flex flex-column gap-2 services mt-6 ml-4">
+            <label class="font-bold">Servicios:</label>
+            <div class="flex gap-1">
+                @for (service of hotel().services; track $index) {
+                    <p-chip [label]="service"/>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <p class="text-justify">{{ hotel().description }}</p>
+</section>
+
+<pre>{{ hotel() | json }}</pre>
