@@ -5,11 +5,17 @@ export const AgentMenuItems: MenuItem[] = [
     {
         label: 'Hoteles',
         icon: 'pi pi-building',
-        routerLink: 'hotels',
+        routerLink: '/hotels',
         items: [
             {
-                label: 'Agregar',
-                icon: 'pi pi-plus'
+                label: 'Registrar nuevo',
+                icon: 'pi pi-plus',
+                routerLink: '/hotels/add'
+            },
+            {
+                label: 'Ver lista',
+                icon: 'pi pi-eye',
+                routerLink: '/hotels'
             }
         ]
     },

@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Roles } from '../models';
 
 @Pipe({
-  name: 'TrueRole',
+  name: 'RoleLabel',
   standalone: true
 })
 export class RolePipe implements PipeTransform {

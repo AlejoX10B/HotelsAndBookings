@@ -4,6 +4,7 @@
 @import 'primeflex/primeflex.css';
 @import 'primeicons/primeicons.css';
 
+// General
 
 html,
 body,
@@ -23,7 +24,14 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0;
 }
 
+// General classes
+
 .login-card {
     width: 360px;
     margin: 0 auto;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
 }

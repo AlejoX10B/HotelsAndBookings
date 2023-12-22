@@ -13,7 +13,7 @@
                     <div class="flex gap-2 align-items-center">
                         <div class="flex flex-column text-right text-sm">
                             <b>{{ user?.name }} {{ user?.lastname }}</b>
-                            <span>{{ user?.role | TrueRole }}</span>
+                            <span>{{ user?.role | RoleLabel }}</span>
                         </div>
                         <p-avatar icon="pi pi-user" shape="circle"/>
                     </div>

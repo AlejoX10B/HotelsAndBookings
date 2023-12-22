@@ -1,16 +1,26 @@
-<header class="flex justify-content-between align-items-center gap-2">
-    <h1>{{ hotel()?.name }}</h1>
+<header>
+    <p-toolbar>
+        <ng-template pTemplate="start">
+            <h1>{{ hotel()?.name }}</h1>
+        </ng-template>
 
-    <div class="flex align-items-center gap-4">
-        <p-selectButton (onChange)="changeStatus($event.value)"
-                        [ngModel]="hotel()?.active"
-                        [options]="statusOptions"
-                        [allowEmpty]="false"
-                        optionLabel="label"
-                        optionValue="value"/>
-
-        <p-button label="Editar" icon="pi pi-pencil" severity="success"/>
-    </div>
+        <ng-template pTemplate="end">
+            <div class="flex gap-4">
+                <p-selectButton (onChange)="changeStatus($event.value)"
+                                [ngModel]="hotel()?.active"
+                                [options]="statusOptions"
+                                [allowEmpty]="false"
+                                optionLabel="label"
+                                optionValue="value"/>
+        
+                <p-button type="button"
+                          label="Editar"
+                          icon="pi pi-pencil"
+                          routerLink="../edit/{{id}}"
+                          severity="success"/>
+            </div>
+        </ng-template>
+    </p-toolbar>    
 </header>
 
 <section class="grid mt-3">
@@ -53,5 +63,3 @@
 <section>
     <p class="text-justify">{{ hotel()?.description }}</p>
 </section>
-
-<!-- <pre>{{ hotel() | json }}</pre> -->

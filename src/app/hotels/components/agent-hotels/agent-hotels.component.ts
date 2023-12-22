@@ -1,6 +1,9 @@
 import { Component, DestroyRef, computed, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
+
 import { HotelsService } from '../../../shared/services';
+
+import { Hotel } from '../../../shared/models';
 
 
 @Component({
@@ -11,8 +14,10 @@ import { HotelsService } from '../../../shared/services';
 export class AgentHotelsComponent {
 
   private hotelsService = inject(HotelsService)
+  
 
-  hotels = computed(() => this.hotelsService.agentHotels())
+  hotels = computed<Hotel[]>(() => this.hotelsService.agentHotels())
+
 
   constructor() {
     this.hotelsService.getAgentHotels()

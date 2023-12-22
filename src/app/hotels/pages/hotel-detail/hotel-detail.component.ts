@@ -8,13 +8,14 @@ import { HotelsService } from '../../../shared/services';
 @Component({
   selector: 'hotel-detail',
   templateUrl: './hotel-detail.component.html',
-  styleUrl: './hotel-detail.component.scss'
+  styles: ''
 })
 export class HotelDetailComponent {
 
   private destroyRef = inject(DestroyRef)
   private hotelsService = inject(HotelsService)
   private msgService = inject(MessageService)
+
 
   @Input({ transform: numberAttribute }) id!: number
 
@@ -24,6 +25,7 @@ export class HotelDetailComponent {
   ]
 
   hotel = computed(() => this.hotelsService.queriedHotel())
+
 
   ngOnInit() {
     this.hotelsService.getHotel(this.id)
@@ -41,7 +43,7 @@ export class HotelDetailComponent {
           this.msgService.add({
             severity: 'success',
             summary: 'Éxito!',
-            detail: `El hotel ha sido ${(status) ? 'habilitdado': 'deshabilitado'}`
+            detail: `El hotel ha sido ${(status) ? 'habilitado': 'deshabilitado'}`
           })
         },
         error: () => {
