@@ -2,6 +2,7 @@ import { Component, effect, inject } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { MessageService, PrimeNGConfig } from 'primeng/api';
 
+import { PrimengModule } from './shared/primeng.module';
 import { AuthService } from './shared/services';
 
 import { AuthStatus } from './auth/models';
@@ -9,14 +10,18 @@ import { AuthStatus } from './auth/models';
 
 @Component({
   imports: [
-    RouterOutlet
+    RouterOutlet,
+    PrimengModule
   ],
   providers: [
     MessageService
   ],
   standalone: true,
   selector: 'app-root',
-  template: '<router-outlet/>',
+  template: `
+    <p-toast/>
+    <router-outlet/>
+  `,
   styles: ''
 })
 export class AppComponent {

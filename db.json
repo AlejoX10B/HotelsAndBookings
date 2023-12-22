@@ -1,33 +1,38 @@
 {
-    "users": [
-        {
-            "id": "51097ef1-50af-4386-83c9-50ad15c97f9d",
-            "email": "alejo@admin.com",
-            "password": "12345",
-            "name": "Alejandro",
-            "lastname": "Castañeda",
-            "role": "AGENT"
-        },
-        {
-            "id": "b564db20-911f-4e2f-b65b-f85233767cfe",
-            "email": "adri@email.com",
-            "password": "12345",
-            "name": "Adriana",
-            "lastname": "Rojas",
-            "role": "USER"
-        }
-    ],
-    "hotels": [
-        {
-            "id": 1,
-            "name": "Hotel Lancaster House Suites",
-            "location": "Paralela Autonorte No. 106B - 28, Usaquén, 110010 Bogotá, Colombia",
-            "description": "Lorem ipsum dolor sit amet kasd dolor rebum sed delenit suscipit in labore eirmod et amet et sed gubergren at consetetur dolores hendrerit vel labore eirmod et ipsum dolores lorem molestie diam ut labore eu consetetur amet amet elitr elit eirmod in feugait kasd eirmod eos ut sit vero eos justo et sea no elitr erat dolor ad dolor dolor stet esse imperdiet dolor ipsum diam et labore sanctus nonumy sit et invidunt blandit tempor est sadipscing vel eum gubergren ipsum magna lorem consetetur enim ea ut exerci hendrerit dolore feugiat duis ipsum esse lorem volutpat elitr et justo clita amet dignissim vulputate eirmod et invidunt magna ut accusam clita ipsum ipsum et quis dolor elitr ut soluta accusam erat et consequat dolor ex sea eos ut et ipsum hendrerit rebum sanctus facilisis vel feugait eleifend iriure wisi et sit lorem amet vulputate dolor erat sed facilisis ullamcorper ipsum minim.",
-            "img_url": "https://lh3.googleusercontent.com/proxy/Tm0duzk41y7SIgzr1gu5b6v-gUBXf8u4wlPjpzDq0Cn_12cKh8NgDwY9vnLG9-PO7t01mPvLHO-Cie88di1mlDDFuuroU-ZfbR586uhqD1MNyD8H7IHeDAkyxUzv6XRIhln4LspGYBpQQa_kpRUDanS0k1ir_4c=w472-h352-n-k",
-            "stars": 5,
-            "services": ["WiFi", "Parking", "Room Service"],
-            "rooms_count": 10,
-            "rooms": []
-        }
-    ]
+  "users": [
+    {
+      "id": "51097ef1-50af-4386-83c9-50ad15c97f9d",
+      "email": "alejo@admin.com",
+      "password": "12345",
+      "name": "Alejandro",
+      "lastname": "Castañeda",
+      "role": "AGENT"
+    },
+    {
+      "id": "b564db20-911f-4e2f-b65b-f85233767cfe",
+      "email": "adri@email.com",
+      "password": "12345",
+      "name": "Adriana",
+      "lastname": "Rojas",
+      "role": "USER"
+    }
+  ],
+  "hotels": [
+    {
+      "id": 1,
+      "name": "Hotel Lancaster House Suites",
+      "location": "Paralela Autonorte No. 106B - 28, Usaquén, 110010 Bogotá, Colombia",
+      "description": "Lorem ipsum dolor sit amet kasd dolor rebum sed delenit suscipit in labore eirmod et amet et sed gubergren at consetetur dolores hendrerit vel labore eirmod et ipsum dolores lorem molestie diam ut labore eu consetetur amet amet elitr elit eirmod in feugait kasd eirmod eos ut sit vero eos justo et sea no elitr erat dolor ad dolor dolor stet esse imperdiet dolor ipsum diam et labore sanctus nonumy sit et invidunt blandit tempor est sadipscing vel eum gubergren ipsum magna lorem consetetur enim ea ut exerci hendrerit dolore feugiat duis ipsum esse lorem volutpat elitr et justo clita amet dignissim vulputate eirmod et invidunt magna ut accusam clita ipsum ipsum et quis dolor elitr ut soluta accusam erat et consequat dolor ex sea eos ut et ipsum hendrerit rebum sanctus facilisis vel feugait eleifend iriure wisi et sit lorem amet vulputate dolor erat sed facilisis ullamcorper ipsum minim.",
+      "img_url": "https://lh3.googleusercontent.com/proxy/Tm0duzk41y7SIgzr1gu5b6v-gUBXf8u4wlPjpzDq0Cn_12cKh8NgDwY9vnLG9-PO7t01mPvLHO-Cie88di1mlDDFuuroU-ZfbR586uhqD1MNyD8H7IHeDAkyxUzv6XRIhln4LspGYBpQQa_kpRUDanS0k1ir_4c=w472-h352-n-k",
+      "stars": 5,
+      "services": [
+        "WiFi",
+        "Parking",
+        "Room Service"
+      ],
+      "rooms_count": 10,
+      "active": false,
+      "rooms": []
+    }
+  ]
 }

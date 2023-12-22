@@ -11,7 +11,6 @@ import { UserHotelsComponent } from './components/user-hotels/user-hotels.compon
 import { HotelDetailComponent } from './pages/hotel-detail/hotel-detail.component';
 
 
-
 @NgModule({
   declarations: [
     HotelsComponent,

@@ -9,6 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { MenubarModule } from 'primeng/menubar';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { RatingModule } from 'primeng/rating';
+import { SelectButtonModule } from 'primeng/selectbutton';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 
@@ -24,8 +25,9 @@ import { ToastModule } from 'primeng/toast';
     MenubarModule,
     RadioButtonModule,
     RatingModule,
+    SelectButtonModule,
     TableModule,
-    ToastModule
+    ToastModule,
   ]
 })
 export class PrimengModule { }
