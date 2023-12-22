@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 
 import { AuthService } from '../../../shared/services';
+import { Roles } from '../../../shared/models';
 
 
 @Component({
@@ -10,10 +11,16 @@ import { AuthService } from '../../../shared/services';
 })
 export class HotelsComponent implements OnInit {
 
-  authService = inject(AuthService)
+  private authService = inject(AuthService)
+  
+
+  readonly Roles = Roles
+
+  role: Roles | unknown
+
 
   ngOnInit() {
-    console.log(this.authService.user())
+    this.role = this.authService.user()?.role
   }
 
 }

@@ -1,0 +1,38 @@
+
+<h1 class="mb-4">Hoteles Registrados</h1>
+
+<section class="mb-3">
+    <p-menubar>
+        <ng-template pTemplate="end">
+            <p-button label="Registrar Hotel" icon="pi pi-plus"/>
+        </ng-template>
+    </p-menubar>
+</section>
+
+<section>
+    <p-table [value]="hotels()" dataKey="id" selectionMode="single">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Id</th>
+                <th>Hotel</th>
+                <th>Ubicación</th>
+                <th>Cant. Hab.</th>
+                <th>Acciones</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-hotel>
+            <tr [pSelectableRow]="hotel" routerLink="/hotels/{{hotel.id}}">
+                <td>{{ hotel.id }}</td>
+                <td>
+                    <div class="flex align-items-center gap-2">
+                        <img [src]="hotel.img_url" height="40px" [alt]="hotel.id">
+                        {{ hotel.name }}
+                    </div>
+                </td>
+                <td>{{ hotel.location }}</td>
+                <td>{{ hotel.rooms_count }}</td>
+                <td></td>
+            </tr>
+        </ng-template>
+    </p-table>
+</section>
