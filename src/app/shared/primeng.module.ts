@@ -7,6 +7,7 @@ import { ChipModule } from 'primeng/chip';
 import { ChipsModule } from 'primeng/chips';
 import { DropdownModule } from 'primeng/dropdown';
 import { FieldsetModule } from 'primeng/fieldset';
+import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenubarModule } from 'primeng/menubar';
@@ -31,6 +32,7 @@ import { ToolbarModule } from 'primeng/toolbar';
     ChipsModule,
     DropdownModule,
     FieldsetModule,
+    InputNumberModule,
     InputTextareaModule,
     InputTextModule,
     MenubarModule,
