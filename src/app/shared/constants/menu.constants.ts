@@ -22,7 +22,7 @@ export const AgentMenuItems: MenuItem[] = [
     {
         label: 'Reservas',
         icon: 'pi pi-ticket',
-        routerLink: 'bookings'
+        routerLink: '/bookings'
     }
 ]
 
@@ -30,10 +30,12 @@ export const AgentMenuItems: MenuItem[] = [
 export const UserMenuItems: MenuItem[] = [
     {
         label: 'Hoteles',
-        icon: 'pi pi-building'
+        icon: 'pi pi-building',
+        routerLink: '/hotels'
     },
     {
         label: 'Mis Reservas',
-        icon: 'pi pi-ticket'
+        icon: 'pi pi-ticket',
+        routerLink: '/bookings'
     }
 ]

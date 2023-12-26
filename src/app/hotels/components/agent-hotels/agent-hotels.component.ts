@@ -1,5 +1,4 @@
 import { Component, DestroyRef, computed, inject } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 
 import { HotelsService } from '../../../shared/services';
 
@@ -20,9 +19,7 @@ export class AgentHotelsComponent {
 
 
   constructor() {
-    this.hotelsService.getAgentHotels()
-      .pipe(takeUntilDestroyed())
-      .subscribe()
+    this.hotelsService.getAgentHotels().subscribe()
   }
 
 }

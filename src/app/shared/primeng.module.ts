@@ -3,11 +3,14 @@ import { NgModule } from '@angular/core';
 import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
 import { ButtonModule } from 'primeng/button';
+import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
 import { ChipModule } from 'primeng/chip';
 import { ChipsModule } from 'primeng/chips';
 import { DropdownModule } from 'primeng/dropdown';
 import { FieldsetModule } from 'primeng/fieldset';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
@@ -29,11 +32,14 @@ import { ToolbarModule } from 'primeng/toolbar';
     AvatarModule,
     BadgeModule,
     ButtonModule,
+    CalendarModule,
     CardModule,
     ChipModule,
     ChipsModule,
     DropdownModule,
     FieldsetModule,
+    InputGroupAddonModule,
+    InputGroupModule,
     InputNumberModule,
     InputTextareaModule,
     InputTextModule,
