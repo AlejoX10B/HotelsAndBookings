@@ -41,6 +41,16 @@ export class HotelsService {
       )
   }
 
+  createHotel(hotel: any): Observable<any> {
+    const url = `${env.backUrl}/${env.routes.hotels}`
+
+    return this.http.post<any>(url, hotel)
+      .pipe(
+        map(() => true),
+        catchError(e => throwError(() => e.message))
+      )
+  }
+
   changeHotelStatus(hotelId: number, status: boolean): Observable<boolean> {
     const url = `${env.backUrl}/${env.routes.hotels}/${hotelId}`
     const body = { active: status }

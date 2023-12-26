@@ -1,7 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
-import { markAllAsDirty, roomTypeOptions, urlValidator } from '../../../shared/constants';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+
+import { HotelsService } from '../../../shared/services';
+
+import { markAllAsDirty, roomTypeOptions, urlValidator } from '../../../shared/constants';
+
 
 @Component({
   selector: 'app-hotel-form',
@@ -10,6 +15,8 @@ import { MessageService } from 'primeng/api';
 })
 export class HotelFormComponent implements OnInit {
 
+  private router = inject(Router)
+  private hotelsService = inject(HotelsService)
   private msgService = inject(MessageService)
 
 
@@ -55,11 +62,11 @@ export class HotelFormComponent implements OnInit {
 
   onSubmit() {
     const form = this.hotelForm
-    console.log(form.value)
+
     if (form.invalid) {
       this.msgService.add({
         severity: 'error',
-        summary: 'Error en el formulario',
+        summary: 'Error en el formulario!',
         detail: 'Revisa los datos ingresados'
       })
       markAllAsDirty(form)
@@ -67,10 +74,25 @@ export class HotelFormComponent implements OnInit {
       return
     }
 
-    this.msgService.add({
-      severity: 'success',
-      summary: 'Hotel creado'
-    })
+    this.hotelsService.createHotel(form.value)
+      .subscribe({
+        next: () => {
+          this.msgService.add({
+            severity: 'success',
+            summary: 'Éxito!',
+            detail: 'El hotel ha sido creado'
+          })
+
+          this.router.navigateByUrl('/hotels')
+        },
+        error: (e) => {
+          this.msgService.add({
+            severity: 'error',
+            summary: 'Error!',
+            detail: `Ha ocurrido un error al intentar crear el hotel: ${e}`
+          })
+        }
+      })
   }
 
 }

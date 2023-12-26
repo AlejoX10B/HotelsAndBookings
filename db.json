@@ -30,9 +30,38 @@
         "Parking",
         "Room Service"
       ],
-      "rooms_count": 10,
       "active": true,
       "rooms": []
+    },
+    {
+      "id": 2,
+      "active": true,
+      "name": "Ikara Hotel Campestre Villeta",
+      "location": "Villeta-Guaduas Kilometro 5., 253410 Villeta, Colombia",
+      "description": "El Ikara Hotel Campestre Villeta se encuentra en Villeta y ofrece centro de fitness, jardín, salón compartido y restaurante. Además, hay WiFi gratuita y aparcamiento privado gratuito.\n\nEl hotel cuenta con mesa de ping pong.",
+      "img_url": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/302561068.jpg?k=9ff1922fc98c115f605428db97d89b733430015b5e5d83190660cbd6ee4660b8&o=&hp=1",
+      "score": 3,
+      "services": [
+        "WiFi",
+        "Piscina",
+        "Parqueadero"
+      ],
+      "rooms": [
+        {
+          "active": true,
+          "kind": "excecutive",
+          "location": "Cabaña B",
+          "cost": 380600,
+          "taxes": 12
+        },
+        {
+          "active": true,
+          "kind": "excecutive",
+          "location": "Cabaña B",
+          "cost": 380600,
+          "taxes": 12
+        }
+      ]
     }
   ]
 }

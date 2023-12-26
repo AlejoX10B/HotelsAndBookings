@@ -22,7 +22,7 @@
                 <th>Hotel</th>
                 <th>Ubicación</th>
                 <th>Estado</th>
-                <th>Cant. Hab.</th>
+                <th>Estrellas</th>
                 <th></th>
             </tr>
         </ng-template>
@@ -45,7 +45,7 @@
                            [severity]="(hotel.active) ? 'success' : 'danger'"/>
                 </td>
                 <td routerLink="./{{hotel.id}}">
-                    {{ hotel.rooms_count }}
+                    <p-badge [value]="hotel.score"/>
                 </td>
                 <td>
                     <p-button routerLink="./edit/{{hotel.id}}"
