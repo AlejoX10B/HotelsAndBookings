@@ -2,7 +2,8 @@ import { Component, DestroyRef, Input, computed, inject, numberAttribute } from 
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MessageService } from 'primeng/api';
 
-import { HotelsService } from '../../../shared/services';
+import { AuthService, HotelsService } from '../../../shared/services';
+import { Roles } from '../../../shared/models';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { HotelsService } from '../../../shared/services';
 export class HotelDetailComponent {
 
   private destroyRef = inject(DestroyRef)
+  private authService = inject(AuthService)
   private hotelsService = inject(HotelsService)
   private msgService = inject(MessageService)
 
@@ -25,6 +27,9 @@ export class HotelDetailComponent {
   ]
 
   hotel = computed(() => this.hotelsService.queriedHotel())
+  user = computed(() => this.authService.user())
+
+  readonly Roles = Roles
 
 
   ngOnInit() {

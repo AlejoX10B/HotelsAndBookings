@@ -4,22 +4,24 @@
             <h1>{{ hotel()?.name }}</h1>
         </ng-template>
 
-        <ng-template pTemplate="end">
-            <div class="flex gap-4">
-                <p-selectButton (onChange)="changeStatus($event.value)"
-                                [ngModel]="hotel()?.active"
-                                [options]="statusOptions"
-                                [allowEmpty]="false"
-                                optionLabel="label"
-                                optionValue="value"/>
-        
-                <p-button type="button"
-                          label="Editar"
-                          icon="pi pi-pencil"
-                          routerLink="../edit/{{id}}"
-                          severity="success"/>
-            </div>
-        </ng-template>
+        @if (user()?.role === Roles.AGENT) {        
+            <ng-template pTemplate="end">
+                <div class="flex gap-4">
+                    <p-selectButton (onChange)="changeStatus($event.value)"
+                                    [ngModel]="hotel()?.active"
+                                    [options]="statusOptions"
+                                    [allowEmpty]="false"
+                                    optionLabel="label"
+                                    optionValue="value"/>
+            
+                    <p-button type="button"
+                              label="Editar"
+                              icon="pi pi-pencil"
+                              routerLink="../edit/{{id}}"
+                              severity="success"/>
+                </div>
+            </ng-template>
+        }
     </p-toolbar>    
 </header>
 

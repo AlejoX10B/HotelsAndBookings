@@ -5,11 +5,15 @@ import { HotelsComponent } from './pages/hotels/hotels.component';
 import { HotelDetailComponent } from './pages/hotel-detail/hotel-detail.component';
 import { HotelFormComponent } from './components/hotel-form/hotel-form.component';
 
+import { roleGuard } from '../shared/guards';
+
+import { Roles } from '../shared/models';
+
 
 const routes: Routes = [
   { path: '', component: HotelsComponent },
-  { path: 'add', component: HotelFormComponent },
-  { path: 'edit/:id', component: HotelFormComponent },
+  { path: 'add', canActivate: [ roleGuard(Roles.AGENT) ], component: HotelFormComponent },
+  { path: 'edit/:id', canActivate: [ roleGuard(Roles.AGENT) ], component: HotelFormComponent },
   { path: ':id', component: HotelDetailComponent },
   { path: '**', redirectTo: '' }
 ]
