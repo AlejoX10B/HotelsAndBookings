@@ -1,4 +1,4 @@
-import { Component, OnInit, computed, effect, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 
 import { HotelsService } from '../../../shared/services';
 
@@ -19,7 +19,7 @@ export class UserHotelsComponent {
   filter = signal<string|null>(null)
 
   hotels = computed<Hotel[]>(() => {
-    const hotels = this.hotelsService.agentHotels()
+    const hotels = this.hotelsService.userHotels()
 
     if (!this.filter()) return hotels
 
@@ -32,7 +32,7 @@ export class UserHotelsComponent {
 
 
   constructor() {
-    this.hotelsService.getAgentHotels().subscribe()
+    this.hotelsService.getUserHotels().subscribe()
   }
 
   filterHotels(input: any) {

@@ -1,3 +1,4 @@
+
 export interface Hotel {
     id:             number
     active:         boolean
@@ -7,6 +8,14 @@ export interface Hotel {
     img_url:        string
     score:          number
     services:       string[]
-    rooms_count:    number
-    rooms:          any[]
+    rooms:          HotelRoom[]
+}
+
+export interface HotelRoom {
+    active:         boolean
+    kind:           string
+    location:       string
+    description:    string
+    cost:           number
+    taxes:          number
 }

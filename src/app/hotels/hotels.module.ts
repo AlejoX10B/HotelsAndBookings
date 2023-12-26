@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PrimengModule } from '../shared/primeng.module';
+import { RoomTypePipe } from '../shared/pipes/room-type.pipe';
 import { StatusPipe } from '../shared/pipes/status.pipe';
 import { ErrorCheckerDirective } from '../shared/directives/error-checker.directive';
 import { HotelsRoutingModule } from './hotels.routes';
@@ -27,6 +28,7 @@ import { HotelFormComponent } from './components/hotel-form/hotel-form.component
     FormsModule,
     ReactiveFormsModule,
     PrimengModule,
+    RoomTypePipe,
     StatusPipe,
     ErrorCheckerDirective,
     HotelsRoutingModule

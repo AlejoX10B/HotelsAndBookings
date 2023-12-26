@@ -53,7 +53,7 @@
         
         <div class="flex flex-column gap-2 services mt-6 ml-4">
             <label class="font-bold">Servicios:</label>
-            <div class="flex gap-1">
+            <div class="flex flex-wrap gap-1">
                 @for (service of hotel()?.services; track $index) {
                     <p-chip [label]="service" styleClass="bg-primary"/>
                 }
@@ -62,6 +62,47 @@
     </div>
 </section>
 
-<section>
-    <p class="text-justify">{{ hotel()?.description }}</p>
+<section class="mt-3">
+    <p-panel header="Descripción" [toggleable]="true">
+        <p class="text-justify">{{ hotel()?.description }}</p>
+    </p-panel>
+</section>
+
+<section class="mt-3 grid gap-3">
+    @for(room of hotel()?.rooms; track $index) {
+        <p-panel class="col">
+            <ng-template pTemplate="header">
+                <div class="flex align-items-center justify-content-between w-full gap-3">
+                    <h2>Habitación {{ room.kind | RoomType }}</h2>
+                    <h3 class="text-green-700">$ {{ room.cost | number }}</h3>
+                </div>
+            </ng-template>
+
+            <div class="flex align-items-center gap-2 mb-4 text-lg">
+                <i class="pi pi-money-bill text-primary"></i>
+                <label class="font-bold">Impuestos: </label>
+                <span>{{ room.taxes }}%</span>
+            </div>
+            
+            <div class="flex align-items-center gap-2 mb-4 text-lg">
+                <i class="pi pi-map-marker text-primary"></i>
+                <label class="font-bold">Ubicación: </label>
+                <span>{{ room.location }}</span>
+            </div>
+
+            <div>
+                <div class="flex align-items-center gap-2 mb-2 text-lg">
+                    <i class="pi pi-comment text-primary"></i>
+                    <label class="font-bold">Descripción: </label>
+                </div>
+                <p class="text-justify">{{ room.description }}</p>
+            </div>
+
+            <ng-template pTemplate="footer">
+                <div class="w-full flex justify-content-center">
+                    <p-button icon="pi pi-bookmark" label="Reservar"/>
+                </div>
+            </ng-template>
+        </p-panel>
+    }
 </section>

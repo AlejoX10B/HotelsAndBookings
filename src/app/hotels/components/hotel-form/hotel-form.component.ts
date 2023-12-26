@@ -59,7 +59,7 @@ export class HotelFormComponent implements OnInit {
       return
     }
 
-    this.hotelsService.getHotel(this.id).subscribe()
+    this.hotelsService.getAgentHotel(this.id).subscribe()
     this.action = Actions.Edit
   }
 
@@ -74,7 +74,7 @@ export class HotelFormComponent implements OnInit {
         taxes:    [0, [Validators.required, Validators.min(0)]]
       })
       
-      roomForm.patchValue(room)
+      roomForm.patchValue(room as never)
       this.rooms.push(roomForm)
     })
   }

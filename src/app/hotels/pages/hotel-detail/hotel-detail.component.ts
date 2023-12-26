@@ -1,5 +1,5 @@
-import { Component, DestroyRef, Input, computed, inject, numberAttribute } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Component, Input, computed, effect, inject, numberAttribute } from '@angular/core';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
 import { AuthService, HotelsService } from '../../../shared/services';
@@ -13,7 +13,7 @@ import { Roles } from '../../../shared/models';
 })
 export class HotelDetailComponent {
 
-  private destroyRef = inject(DestroyRef)
+  private router = inject(Router)
   private authService = inject(AuthService)
   private hotelsService = inject(HotelsService)
   private msgService = inject(MessageService)
@@ -32,17 +32,25 @@ export class HotelDetailComponent {
   readonly Roles = Roles
 
 
-  ngOnInit() {
-    this.hotelsService.getHotel(this.id)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe()
+  constructor() {
+    effect(() => {
+      (this.user()?.role === Roles.AGENT)
+        ? this.hotelsService.getAgentHotel(this.id).subscribe()
+        : this.hotelsService.getUserHotel(this.id).subscribe()
+    })
+
+    effect(() => {
+      if (this.user()?.role === Roles.USER && !this.hotel()?.active) {
+        this.router.navigateByUrl('/')
+      }
+    })
   }
+
 
   changeStatus(status: boolean) {
     if (status == this.hotel()?.active) return
 
     this.hotelsService.changeHotelStatus(this.id, status)
-      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: () => {
           this.msgService.add({
