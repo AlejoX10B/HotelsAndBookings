@@ -1,5 +1,5 @@
 
-export const roomTypeOptions = [
+export const RoomTypeOptions = [
     { label: 'Sencilla', value: 'single'},
     { label: 'Doble', value: 'double'},
     { label: 'Triple', value: 'triple'},

@@ -1,11 +1,12 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { Component, CreateEffectOptions, Injector, Input, OnInit, computed, effect, inject, numberAttribute } from '@angular/core';
+import { Form, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
 import { HotelsService } from '../../../shared/services';
 
-import { markAllAsDirty, roomTypeOptions, urlValidator } from '../../../shared/constants';
+import { Actions, markAllAsDirty, RoomTypeOptions, urlValidator } from '../../../shared/constants';
+import { Hotel } from '../../../shared/models';
 
 
 @Component({
@@ -20,59 +21,65 @@ export class HotelFormComponent implements OnInit {
   private msgService = inject(MessageService)
 
 
-  readonly roomOptions = roomTypeOptions
+  @Input({ transform: numberAttribute }) id!: number
+  
+  hotel = computed<Hotel|null>(() => this.hotelsService.queriedHotel())
+
+  hotelEffect = effect(() => {
+    if (this.action == Actions.Add || !this.hotel()) return
+
+    this.hotelForm.patchValue(this.hotel() as never)
+    this._fillRooms()
+  })
 
   hotelForm = new FormBuilder().group({
-    id:           [null],
     active:       [true],
     name:         [null, [Validators.required, Validators.minLength(3), Validators.maxLength(250)]],
     location:     [null, [Validators.required, Validators.minLength(3), Validators.maxLength(250)]],
-    description:  [null, [Validators.minLength(10), Validators.maxLength(250)]],
+    description:  [null, [Validators.minLength(10), Validators.maxLength(2500)]],
     img_url:      [null, [urlValidator()]],
     score:        [3, [Validators.required, Validators.min(0), Validators.max(5)]],
     services:     [[]],
     rooms:        new FormBuilder().array([])
   })
 
-  roomForm = new FormBuilder().group({
-    active:   [true],
-    kind:     [null, [Validators.required]],
-    location: [null, [Validators.required]],
-    cost:     [0, [Validators.required, Validators.min(0)]],
-    taxes:    [0, [Validators.required, Validators.min(0)]]
-  })
-
   get rooms() {
     return this.hotelForm.get('rooms') as FormArray
   }
 
+  readonly RoomOptions = RoomTypeOptions
+  readonly Actions = Actions
 
+  action = Actions.Add
+
+  
   ngOnInit() {
-    this.addRoom()
-  }
-
-
-  addRoom() {
-    this.rooms.push(this.roomForm)
-  }
-
-  deleteRoom(index: number) {
-    this.rooms.removeAt(index)
-  }
-
-  onSubmit() {
-    const form = this.hotelForm
-
-    if (form.invalid) {
-      this.msgService.add({
-        severity: 'error',
-        summary: 'Error en el formulario!',
-        detail: 'Revisa los datos ingresados'
-      })
-      markAllAsDirty(form)
-
+    if (!this.router.url.includes('edit')) {
+      this.addRoom()
       return
     }
+
+    this.hotelsService.getHotel(this.id).subscribe()
+    this.action = Actions.Edit
+  }
+
+  
+  private _fillRooms() {
+    this.hotel()?.rooms?.forEach(room => {
+      const roomForm = new FormBuilder().group({
+        active:   [true],
+        kind:     [null, [Validators.required]],
+        location: [null, [Validators.required]],
+        cost:     [0, [Validators.required, Validators.min(0)]],
+        taxes:    [0, [Validators.required, Validators.min(0)]]
+      })
+      
+      roomForm.patchValue(room)
+      this.rooms.push(roomForm)
+    })
+  }
+
+  private _addHotel(form: FormGroup) {
 
     this.hotelsService.createHotel(form.value)
       .subscribe({
@@ -93,6 +100,64 @@ export class HotelFormComponent implements OnInit {
           })
         }
       })
+  }
+
+  private _editHotel(form: FormGroup) {
+
+    this.hotelsService.editHotel(this.id, form.value)
+      .subscribe({
+        next: () => {
+          this.msgService.add({
+            severity: 'success',
+            summary: 'Éxito!',
+            detail: 'Los datos han sido modificados'
+          })
+
+          this.router.navigateByUrl('/hotels')
+        },
+        error: (e) => {
+          this.msgService.add({
+            severity: 'error',
+            summary: 'Error!',
+            detail: `Ha ocurrido un error al intentar editar el hotel: ${e}`
+          })
+        }
+      })
+  }
+
+  addRoom() {
+    const roomForm = new FormBuilder().group({
+      active:   [true],
+      kind:     [null, [Validators.required]],
+      location: [null, [Validators.required]],
+      cost:     [0, [Validators.required, Validators.min(0)]],
+      taxes:    [0, [Validators.required, Validators.min(0)]]
+    })
+    this.rooms.push(roomForm)
+  }
+
+  deleteRoom(index: number) {
+    this.rooms.removeAt(index)
+  }
+
+  onSubmit() {
+    const form = this.hotelForm
+
+    if (form.invalid) {
+      this.msgService.add({
+        severity: 'error',
+        summary: 'Error en el formulario!',
+        detail: 'Revisa los datos ingresados'
+      })
+      markAllAsDirty(form)
+
+      return
+    }
+
+    (this.action === Actions.Add)
+      ? this._addHotel(form)
+      : this._editHotel(form)
+    
   }
 
 }

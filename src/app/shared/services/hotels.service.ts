@@ -3,6 +3,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { Observable, catchError, map, tap, throwError } from 'rxjs';
 
 import { environment as env } from '../../../environments/environment';
+
 import { Hotel } from '../models';
 
 
@@ -41,10 +42,20 @@ export class HotelsService {
       )
   }
 
-  createHotel(hotel: any): Observable<any> {
+  createHotel(hotel: any): Observable<boolean> {
     const url = `${env.backUrl}/${env.routes.hotels}`
 
     return this.http.post<any>(url, hotel)
+      .pipe(
+        map(() => true),
+        catchError(e => throwError(() => e.message))
+      )
+  }
+
+  editHotel(hotelId: number, hotel: any): Observable<boolean> {
+    const url = `${env.backUrl}/${env.routes.hotels}/${hotelId}`
+
+    return this.http.patch<Hotel>(url, hotel)
       .pipe(
         map(() => true),
         catchError(e => throwError(() => e.message))

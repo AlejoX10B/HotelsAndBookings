@@ -38,19 +38,22 @@
       "active": true,
       "name": "Ikara Hotel Campestre Villeta",
       "location": "Villeta-Guaduas Kilometro 5., 253410 Villeta, Colombia",
-      "description": "El Ikara Hotel Campestre Villeta se encuentra en Villeta y ofrece centro de fitness, jardín, salón compartido y restaurante. Además, hay WiFi gratuita y aparcamiento privado gratuito.\n\nEl hotel cuenta con mesa de ping pong.",
+      "description": "El Ikara Hotel Campestre Villeta se encuentra en Villeta y ofrece centro de fitness, jardín, salón compartido y restaurante. Además, hay WiFi gratuita y aparcamiento privado gratuito.\n\nEl hotel cuenta con mesa de ping pong. Es un sitio muy agradable con una cantidad de ambientes rurales por conocer...\n\nLorem ipsum dolor sit amet sadipscing sed sed luptatum eirmod ea aliquip dolor adipiscing facilisis facilisi ut tempor ut et labore sit nihil aliquyam vero gubergren invidunt magna et elitr gubergren amet accusam stet accumsan sanctus sit gubergren congue diam diam dolore sed et dolor sit sanctus facilisi dolores justo sanctus tincidunt et lorem amet et dolore takimata lorem nibh sanctus no sed at diam wisi et duo gubergren at odio sanctus ullamcorper consetetur lorem ipsum sanctus diam sadipscing diam diam vel commodo dolor invidunt dolor consequat amet stet ea consetetur ad kasd eos labore sit vero elit elit eleifend sit sanctus commodo vel lorem lorem accusam vero sanctus ipsum qui molestie rebum et lorem sadipscing nonumy diam diam no duo eu magna consetetur consequat elitr quis molestie gubergren dolor sanctus accusam sed tincidunt tation est lorem est ipsum invidunt ipsum et iriure luptatum sit sea amet esse facilisi in",
       "img_url": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/302561068.jpg?k=9ff1922fc98c115f605428db97d89b733430015b5e5d83190660cbd6ee4660b8&o=&hp=1",
       "score": 3,
       "services": [
         "WiFi",
         "Piscina",
-        "Parqueadero"
+        "Parqueadero",
+        "Jacuzzi",
+        "Sauna",
+        "Restaurante"
       ],
       "rooms": [
         {
           "active": true,
-          "kind": "excecutive",
-          "location": "Cabaña B",
+          "kind": "double",
+          "location": "Cabaña A",
           "cost": 380600,
           "taxes": 12
         },
@@ -58,7 +61,7 @@
           "active": true,
           "kind": "excecutive",
           "location": "Cabaña B",
-          "cost": 380600,
+          "cost": 759600,
           "taxes": 12
         }
       ]
