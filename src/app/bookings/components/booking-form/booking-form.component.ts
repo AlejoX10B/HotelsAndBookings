@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MessageService } from 'primeng/api';
 
-import { AuthService, HotelsService } from '../../../shared/services';
+import { AuthService, BookingsService, HotelsService } from '../../../shared/services';
 
 import { alphabeticValidator, emailValidator, markAllAsDirty, parseUrlToDates } from '../../../shared/constants';
 
@@ -22,6 +22,7 @@ export class BookingFormComponent implements OnInit {
   private router = inject(Router)
   private activatedRoute = inject(ActivatedRoute)
   private authService = inject(AuthService)
+  private bookingsService = inject(BookingsService)
   private hotelsService = inject(HotelsService)
   private msgService = inject(MessageService)
 
@@ -52,7 +53,7 @@ export class BookingFormComponent implements OnInit {
       hotel_id:   [null],
       room_type:  [null],
       dates:      [null, [Validators.required]],
-      persons:     [1, [Validators.required, Validators.min(1)]],
+      persons:    [1, [Validators.required, Validators.min(1)]],
     }),
     client: fb.group({
       names:      [null, [Validators.required, alphabeticValidator()]],
@@ -104,8 +105,6 @@ export class BookingFormComponent implements OnInit {
   onSubmit() {
     const form = this.bookingForm
 
-    console.log(form.value)
-
     if (form.invalid) {
       this.msgService.add({
         severity: 'error',
@@ -113,9 +112,29 @@ export class BookingFormComponent implements OnInit {
         detail: 'Revisa los datos ingresados'
       })
       markAllAsDirty(form)
-
       return
     }
+
+    this.bookingsService.generateBooking(form.value)
+      .subscribe({
+        next: () => {
+          this.msgService.add({
+            severity: 'success',
+            summary: 'Éxito!',
+            detail: 'La reserva ha sido registrada! Se ha enviado un email de confirmación'
+          })
+
+          this.router.navigateByUrl('/bookings')
+        },
+        error: (e) => {
+          this.msgService.add({
+            severity: 'error',
+            summary: 'Error!',
+            detail: `Ha ocurrido un error al intentar registrar la reserva: ${e}`
+          })
+        }
+      })
+    
   }
 
 }

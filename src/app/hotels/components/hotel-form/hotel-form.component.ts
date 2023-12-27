@@ -80,7 +80,6 @@ export class HotelFormComponent implements OnInit {
   }
 
   private _addHotel(form: FormGroup) {
-
     this.hotelsService.createHotel(form.value)
       .subscribe({
         next: () => {
@@ -103,7 +102,6 @@ export class HotelFormComponent implements OnInit {
   }
 
   private _editHotel(form: FormGroup) {
-
     this.hotelsService.editHotel(this.id, form.value)
       .subscribe({
         next: () => {

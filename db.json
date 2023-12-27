@@ -54,6 +54,7 @@
           "active": true,
           "kind": "double",
           "location": "Cabaña A",
+          "description": "Lorem ipsum dolor sit amet kasd dolor rebum sed delenit suscipit in labore eirmod et amet et sed gubergren at consetetur dolores hendrerit vel labore eirmod et ipsum dolores lorem molestie diam ut labore eu consetetur amet amet elitr elit eirmod in feugait kasd eirmod eos ut sit vero eos justo et sea no elitr erat dolor ad dolor dolor stet esse imperdiet dolor ipsum diam et labore sanctus nonumy sit et invidunt blandit tempor est sadipscing vel eum gubergren ipsum magna lorem consetetur enim ea ut exerci hendrerit dolore feugiat duis ipsum esse lorem volutpat elitr et justo clita amet dignissim vulputate eirmod et invidunt magna ut accusam clita ipsum ipsum et quis dolor elitr ut soluta accusam erat et consequat dolor ex sea eos ut et ipsum hendrerit rebum sanctus facilisis vel feugait eleifend iriure wisi et sit lorem amet vulputate dolor erat sed facilisis ullamcorper ipsum minim.",
           "cost": 380600,
           "taxes": 12
         },
@@ -61,10 +62,40 @@
           "active": true,
           "kind": "excecutive",
           "location": "Cabaña B",
+          "description": "Lorem ipsum dolor sit amet kasd dolor rebum sed delenit suscipit in labore eirmod et amet et sed gubergren at consetetur dolores hendrerit vel labore eirmod et ipsum dolores lorem molestie diam ut labore eu consetetur amet amet elitr elit eirmod in feugait kasd eirmod eos ut sit vero eos justo et sea no elitr erat dolor ad dolor dolor stet esse imperdiet dolor ipsum diam et labore sanctus nonumy sit et invidunt blandit tempor est sadipscing vel eum gubergren ipsum magna lorem consetetur enim ea ut exerci hendrerit dolore feugiat duis ipsum esse lorem volutpat elitr et justo clita amet dignissim vulputate eirmod et invidunt magna ut accusam clita ipsum ipsum et quis dolor elitr ut soluta accusam erat et consequat dolor ex sea eos ut et ipsum hendrerit rebum sanctus facilisis vel feugait eleifend iriure wisi et sit lorem amet vulputate dolor erat sed facilisis ullamcorper ipsum minim.",
           "cost": 759600,
           "taxes": 12
         }
       ]
+    }
+  ],
+  "bookings": [
+    {
+      "user_id": "b564db20-911f-4e2f-b65b-f85233767cfe",
+      "booking": {
+        "hotel_id": 2,
+        "room_type": "excecutive",
+        "dates": [
+          "2023-12-26T05:00:00.000Z",
+          "2023-12-31T05:00:00.000Z"
+        ],
+        "persons": 1
+      },
+      "client": {
+        "names": "Diana",
+        "lastnames": "Beltran",
+        "birthday": "2000-10-15T05:00:00.000Z",
+        "gender": "F",
+        "doc_type": "A",
+        "doc_num": "10657894152",
+        "email": "diana@email.com",
+        "phone": "(300) 245-9687"
+      },
+      "emergency_contact": {
+        "fullname": "Fabio Castaneda Beltran",
+        "phone": "(312) 569-8787"
+      },
+      "id": 1
     }
   ]
 }
