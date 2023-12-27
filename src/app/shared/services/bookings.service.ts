@@ -28,6 +28,9 @@ export class BookingsService {
   private _agentBookings = signal<Booking[]>([])
   agentBookings = computed<Booking[]>(() => this._agentBookings())
 
+  private _queriedBooking = signal<Booking|null>(null)
+  queriedBooking = computed<Booking|null>(() => this._queriedBooking())
+
 
   getAgentBookings(): Observable<Booking[]> {
     const url = `${env.backUrl}/${env.routes.bookings}`
@@ -41,9 +44,10 @@ export class BookingsService {
               map(hotels => {
                 bookings.forEach((booking, i) => {
                   const relHotel = hotels[i]
-                  if (relHotel) {
-                    booking.hotel_name = relHotel.name
-                    booking.hotel_location = relHotel.location
+                  booking.hotel = {
+                    ...relHotel,
+                    rooms: [],
+                    room: relHotel.rooms.find(room => room.kind == booking.room_type),
                   }
                 })
                 return bookings
@@ -72,8 +76,11 @@ export class BookingsService {
                 bookings.forEach((booking, i) => {
                   const relHotel = hotels[i]
                   if (relHotel) {
-                    booking.hotel_name = relHotel.name
-                    booking.hotel_location = relHotel.location
+                    booking.hotel = {
+                      ...relHotel,
+                      rooms: [],
+                      room: relHotel.rooms.find(room => room.kind == booking.room_type),
+                    }
                   }
                 })
                 return bookings
@@ -84,6 +91,29 @@ export class BookingsService {
           this._agentBookings.set([])
           this._userBookings.set(bookings)
         }),
+        catchError(e => throwError(() => e.message))
+      )
+  }
+
+  getBooking(bookingId: number): Observable<Booking> {
+    const url = `${env.backUrl}/${env.routes.bookings}/${bookingId}`
+
+    return this.http.get<Booking>(url)
+      .pipe(
+        switchMap(booking => {
+          return this.hotelsService.getUserHotel(booking.hotel_id as number)
+            .pipe(
+              map(hotel => {
+                booking.hotel = {
+                  ...hotel,
+                  rooms: [],
+                  room: hotel.rooms.find(room => room.kind === booking.room_type),
+                }
+                return booking
+              })
+            )
+        }),
+        tap(booking => this._queriedBooking.set(booking)),
         catchError(e => throwError(() => e.message))
       )
   }

@@ -1,4 +1,9 @@
 
+export const HotelStatusOptions = [
+    { label: 'Deshabilitado', value: false },
+    { label: 'Habilitado', value: true }
+]
+
 export const RoomTypeOptions = [
     { label: 'Sencilla', value: 'single'},
     { label: 'Doble', value: 'double'},

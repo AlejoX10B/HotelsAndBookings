@@ -1,0 +1,107 @@
+<header>
+    <p-toolbar>
+        <ng-template pTemplate="start">
+            <div class="flex flex-column gap-2">
+                <h2>Reserva en {{ booking()?.hotel?.name }}</h2>
+                <div class="flex align-items-center gap-2">
+                    <i class="pi pi-calendar"></i>
+                    <span>
+                        Desde {{ booking()?.dates?.at(0) | date }}
+                        al {{ booking()?.dates?.at(1) | date }}
+                    </span>
+                </div>
+                <div class="flex align-items-center gap-2">
+                    <i class="pi pi-user"></i>
+                    <span>Para {{ booking()?.persons }} personas</span>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="end">
+            <div class="flex flex-column gap-1 text-right">
+                <p class="m-0 mb-2">Costo</p>
+                <h2 class="text-green-700">$ {{ booking()?.cost | number }}</h2>
+            </div>
+        </ng-template>
+    </p-toolbar>
+</header>
+
+<section class="grid mt-3">
+    <div class="col flex flex-column gap-2">
+        <p-panel header="Datos {{ (user()?.role === Roles.AGENT) ? 'del cliente' : 'personales' }}">
+            <div class="mb-2 flex gap-2">
+                <label class="font-semibold w-6">Nombres: </label>
+                <span>{{ booking()?.client?.names }}</span>
+            </div>
+            <div class="mb-2 flex gap-2">
+                <label class="font-semibold w-6">Apellidos: </label>
+                <span>{{ booking()?.client?.lastnames }}</span>
+            </div>
+            <div class="mb-2 flex gap-2">
+                <label class="font-semibold w-6">Fecha de nacimiento: </label>
+                <span>{{ booking()?.client?.birthday | date }}</span>
+            </div>
+            <div class="mb-2 flex gap-2">
+                <label class="font-semibold w-6">Género: </label>
+                <span>{{ booking()?.client?.gender | GenderLabel }}</span>
+            </div>
+            <div class="mb-2 flex gap-2">
+                <label class="font-semibold w-6">Tipo de documento: </label>
+                <span>{{ booking()?.client?.doc_type | DocTypeLabel }}</span>
+            </div>
+            <div class="mb-2 flex gap-2">
+                <label class="font-semibold w-6">Número de documento: </label>
+                <span>{{ booking()?.client?.doc_num }}</span>
+            </div>
+            <div class="mb-2 flex gap-2">
+                <label class="font-semibold w-6">Email: </label>
+                <span>{{ booking()?.client?.email }}</span>
+            </div>
+            <div class="mb-2 flex gap-2">
+                <label class="font-semibold w-6">Celular/Teléfono: </label>
+                <span>{{ booking()?.client?.phone }}</span>
+            </div>
+        </p-panel>
+    
+        <p-panel header="Contacto de emergencia" styleClass="mt-3">
+            <div class="mb-2 flex gap-2">
+                <label class="font-semibold w-6">Nombre completo: </label>
+                <span>{{ booking()?.emergency_contact?.fullname }}</span>
+            </div>
+            <div class="mb-2 flex gap-2">
+                <label class="font-semibold w-6">Celular/Teléfono: </label>
+                <span>{{ booking()?.emergency_contact?.phone }}</span>
+            </div>
+        </p-panel>
+    </div>
+
+    <div class="col">
+        <p-panel header="Datos del hotel">
+            <div class="mb-2 flex gap-2">
+                <label class="font-semibold w-6">Habitación: </label>
+                <span>{{ booking()?.hotel?.room?.kind | RoomType }}</span>
+            </div>
+            <div class="mb-2 flex gap-2">
+                <label class="font-semibold w-6">Hotel: </label>
+                <span>{{ booking()?.hotel?.name }}</span>
+            </div>
+            <div class="mb-2 flex gap-2">
+                <label class="font-semibold w-6">Ubicación: </label>
+                <span>{{ booking()?.hotel?.location }}</span>
+            </div>
+            <div class="mb-2 flex gap-2">
+                <label class="font-semibold w-6">Puntaje: </label>
+                <p-rating [ngModel]="booking()?.hotel?.score" [cancel]="false" [readonly]="true"/>
+            </div>
+        </p-panel>
+
+        @if (user()?.role === Roles.AGENT) {
+            <p-panel header="Creado por" styleClass="mt-3">
+                <div class="mb-2 flex gap-2">
+                    <label class="font-semibold w-6">Id de usuario: </label>
+                    <span>{{ booking()?.user_id }}</span>
+                </div>
+            </p-panel>
+        }
+    </div>
+</section>

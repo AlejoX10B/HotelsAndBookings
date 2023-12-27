@@ -1,6 +1,6 @@
 
 export interface Hotel {
-    id:             number
+    id?:            number
     active:         boolean
     name:           string
     location:       string
@@ -9,6 +9,7 @@ export interface Hotel {
     score:          number
     services:       string[]
     rooms:          HotelRoom[]
+    room?:          HotelRoom
 }
 
 export interface HotelRoom {

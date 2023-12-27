@@ -7,7 +7,11 @@ import { RoomTypeOptions } from '../constants';
 })
 export class RoomTypePipe implements PipeTransform {
 
-  transform(value: string): string {
+  transform(value: string | undefined): string | null {
+    if (!value) {
+      return null
+    }
+
     return RoomTypeOptions.find(roomType => roomType.value === value)?.label || ''
   }
 

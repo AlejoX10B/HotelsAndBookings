@@ -1,10 +1,9 @@
+import { Hotel } from './hotel.models'
 
 export interface Booking {
-    id:                 number
+    id?:                number
     user_id:            string
     hotel_id:           number
-    hotel_name?:        string
-    hotel_location?:    string
     cost:               number
     taxes:              number
     room_type:          string
@@ -12,6 +11,7 @@ export interface Booking {
     persons:            number
     client:             BookingClient
     emergency_contact:  EmergencyContact
+    hotel?:             Hotel
 }
 
 interface BookingClient {

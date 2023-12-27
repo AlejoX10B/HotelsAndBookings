@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/api';
 
 import { AuthService, HotelsService } from '../../../shared/services';
 import { Roles } from '../../../shared/models';
+import { HotelStatusOptions } from '../../../shared/constants';
 
 
 @Component({
@@ -21,14 +22,11 @@ export class HotelDetailComponent {
 
   @Input({ transform: numberAttribute }) id!: number
 
-  statusOptions: any[] = [
-    { label: 'Deshabilitado', value: false },
-    { label: 'Habilitado', value: true }
-  ]
-
+  
   hotel = computed(() => this.hotelsService.queriedHotel())
   user = computed(() => this.authService.user())
-
+  
+  readonly HotelStatusOptions = HotelStatusOptions
   readonly Roles = Roles
 
 

@@ -28,10 +28,10 @@
         </ng-template>
 
         <ng-template pTemplate="body" let-booking>
-            <tr [pSelectableRow]="booking">
-                <td>{{ booking.hotel_name }}</td>
-                <td>{{ booking.hotel_location }}</td>
-                <td>{{ booking.dates[0] | date:'dd/MM/yyyy' }} - {{ booking.dates[1] | date:'dd/MM/yyyy' }}</td>
+            <tr [pSelectableRow]="booking" routerLink="./{{booking.id}}">
+                <td>{{ booking.hotel.name }}</td>
+                <td>{{ booking.hotel.location }}</td>
+                <td>{{ booking.dates[0] | date }} - {{ booking.dates[1] | date }}</td>
                 <td><p-badge [value]="booking.persons"/></td>
                 <td>{{ booking.room_type | RoomType }}</td>
                 <td>$ {{ booking.cost | number }}</td>

@@ -13,6 +13,11 @@ import { Hotel } from '../../../shared/models';
   selector: 'app-hotel-form',
   templateUrl: './hotel-form.component.html',
   styles: `
+    form {
+      margin: 0 auto;
+      max-width: 768px;
+    }
+
     header {
       z-index: 1;
       top: -10px;

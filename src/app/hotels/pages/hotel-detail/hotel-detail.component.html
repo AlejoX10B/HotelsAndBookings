@@ -9,7 +9,7 @@
                 <div class="flex gap-4">
                     <p-selectButton (onChange)="changeStatus($event.value)"
                                     [ngModel]="hotel()?.active"
-                                    [options]="statusOptions"
+                                    [options]="HotelStatusOptions"
                                     [allowEmpty]="false"
                                     optionLabel="label"
                                     optionValue="value"/>
