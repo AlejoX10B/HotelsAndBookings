@@ -1,27 +1,46 @@
-# AppHotel
+# App Hotel&Bookings
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.7.
+Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) version 17.0.7 y Yarn 1.x como administrador de paquetes de Node.js
 
-## Development server
+Otras librerías incluidas son:
+- Primeng
+- Primeicons
+- Primeflex
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Se requiere del uso de Node.js >= 20.10.0
 
-## Code scaffolding
+## Servidor de producción
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+El front se encuentra alojado en Netlify, en la url https://hotels-bookings-mock.netlify.app/
 
-## Build
+El back se encuentra alojado en Vercel, en la url https://hotels-mock-back.vercel.app/
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Servidor de desarrollo
 
-## Running unit tests
+Instale Node.js en el equipo.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Ejecute `npm i -g yarn` para añadir yarn como administrador de paquetes.
+Ejecute `npm i -g @angular/cli` para añadir la última versión de Angular.
 
-## Running end-to-end tests
+Ejecute `yarn install` en el path del proyecto para descargar las librerías
+o módulos necesarios para el proyecto.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Ejecute `yarn start` para el servidor de desarrollo. Navegue a `http://localhost:4200/`.
 
-## Further help
+Para montar la base de datos en desarrollo local, instale la librería [json-server](https://www.npmjs.com/package/json-server) ejecutando
+`npm i -g json-server`, luego genere el servidor mock de la base de datos
+ejecutando `json-server db.json --watch` apuntando al path del repositorio.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Datos de ejecución
+
+Ya hay dos usuarios preestablecidos en el fromulario de login, que se
+cambian solo seleccionando los radiobuttons de roles. Hay otros usuarios
+que se pueden usar, y están en la ruta de la base de datos con endpoint
+`/users`.
+
+La estructura de la base de datos mockeada puede verse en el archivo `db.json`
+que se encuentra en el path base del proyecto.
+
+#### Desarrollado por
+Fabio Alejandro Castañeda B. - Desarrollador de Software/Ingeniero Mecatrónico -
+2023

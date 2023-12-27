@@ -1,5 +1,5 @@
 export const environment = {
-    backUrl: 'http://localhost:3000',
+    backUrl: 'https://hotels-mock-back.vercel.app',
     routes: {
         users: 'users',
         hotels: 'hotels',

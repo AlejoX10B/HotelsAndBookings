@@ -36,7 +36,7 @@ export class LoginComponent {
   credentials: Credentials = AgentCredentials
 
   changeCredentials(role: Roles) {
-    this.credentials = (role == Roles.AGENT)
+    this.credentials = (role === Roles.AGENT)
       ? {...AgentCredentials}
       : {...TravelerCredentials}
   }
