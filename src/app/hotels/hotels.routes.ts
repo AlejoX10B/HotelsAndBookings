@@ -11,10 +11,20 @@ import { Roles } from '../shared/models';
 
 
 const routes: Routes = [
-  { path: '', component: HotelsComponent },
-  { path: 'add', canActivate: [ roleGuard(Roles.AGENT) ], component: HotelFormComponent },
-  { path: 'edit/:id', canActivate: [ roleGuard(Roles.AGENT) ], component: HotelFormComponent },
-  { path: ':id', component: HotelDetailComponent },
+  { path: '', title: 'Hoteles', component: HotelsComponent },
+  {
+    path: 'add',
+    title: 'Registrar hotel',
+    canActivate: [ roleGuard(Roles.AGENT) ],
+    component: HotelFormComponent
+  },
+  {
+    path: 'edit/:id',
+    title: 'Editar hotel',
+    canActivate: [ roleGuard(Roles.AGENT) ],
+    component: HotelFormComponent
+  },
+  { path: ':id', title: 'Detalle de hotel', component: HotelDetailComponent },
   { path: '**', redirectTo: '' }
 ]
 

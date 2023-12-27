@@ -83,6 +83,29 @@
           "taxes": 12
         }
       ]
+    },
+    {
+      "active": true,
+      "name": "Hotel Ibis Bogotá Museo",
+      "location": "Tv. 6 #27-85, Bogotá",
+      "description": "Ubicado en el Centro Internacional de Bogotá, este moderno hotel informal se encuentra a 3 minutos a pie del Museo Nacional de Colombia y a 2 km de la estación de telecabina del cerro de Monserrate. Además, se sitúa a 14 km del Aeropuerto Internacional El Dorado Luis Carlos Galán Sarmiento.\nLas habitaciones cálidas con ambiente contemporáneo ofrecen Wi-Fi gratis, TV de pantalla plana y escritorio. Los niños menores de 11 años se hospedan sin cargo adicional con un adulto.\n\nLos servicios incluyen un restobar elegante abierto las 24 horas y una terraza al aire libre. Se ofrecen desayuno y estacionamiento y se aceptan mascotas (todo por un costo adicional).\n\nHora de registro de entrada: 3:00 p.m.\nHora de registro de salida: 12:00 p.m.",
+      "img_url": "https://lh3.googleusercontent.com/p/AF1QipOaTpz1RdTRT_C70HOePZgwdbJZhsngCLVb-q2r=w287-h192-n-k-rw-no-v1",
+      "score": 4,
+      "services": [
+        "WiFi",
+        "Aire Acondicionado",
+        "Desayuno"
+      ],
+      "rooms": [
+        {
+          "active": true,
+          "kind": "single",
+          "location": "Hotel",
+          "cost": 151300,
+          "taxes": 12
+        }
+      ],
+      "id": 3
     }
   ],
   "bookings": [
@@ -112,6 +135,33 @@
         "phone": "(312) 569-8787"
       },
       "id": 1
+    },
+    {
+      "user_id": "a79d9069-c32a-4a5d-836b-543cb065eba0",
+      "hotel_id": 3,
+      "room_type": "single",
+      "cost": 151300,
+      "taxes": 12,
+      "dates": [
+        "2023-12-27T07:01:50.389Z",
+        "2023-12-31T05:00:00.000Z"
+      ],
+      "persons": 1,
+      "client": {
+        "names": "Carlos",
+        "lastnames": "Fonseca",
+        "birthday": "1992-05-21T04:00:00.000Z",
+        "gender": "M",
+        "doc_type": "CE",
+        "doc_num": "10923882",
+        "email": "cfonseca@email.com",
+        "phone": "(300) 239-1222"
+      },
+      "emergency_contact": {
+        "fullname": "Jhoana Rojas Sarmiento",
+        "phone": "(355) 234-5656"
+      },
+      "id": 2
     }
   ]
 }
