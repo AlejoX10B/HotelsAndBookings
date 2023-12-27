@@ -63,7 +63,7 @@
 </section>
 
 <section class="mt-3">
-    <p-panel header="Descripción" [toggleable]="true">
+    <p-panel header="Descripción" [toggleable]="true" [collapsed]="user()?.role === Roles.USER">
         <p class="text-justify">{{ hotel()?.description }}</p>
     </p-panel>
 </section>
@@ -100,7 +100,12 @@
 
             <ng-template pTemplate="footer">
                 <div class="w-full flex justify-content-center">
-                    <p-button icon="pi pi-bookmark" label="Reservar"/>
+                    <p-button class="w-full"
+                            styleClass="w-full"
+                            label="Seleccionar"
+                            icon="pi pi-bookmark"
+                            [outlined]="true"
+                            routerLink="/bookings/add/{{hotel()?.id}}/{{room.kind}}"/>
                 </div>
             </ng-template>
         </p-panel>

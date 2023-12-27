@@ -11,6 +11,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FieldsetModule } from 'primeng/fieldset';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { InputMaskModule } from 'primeng/inputmask';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
@@ -40,6 +41,7 @@ import { ToolbarModule } from 'primeng/toolbar';
     FieldsetModule,
     InputGroupAddonModule,
     InputGroupModule,
+    InputMaskModule,
     InputNumberModule,
     InputTextareaModule,
     InputTextModule,

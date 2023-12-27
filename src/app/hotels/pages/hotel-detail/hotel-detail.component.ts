@@ -40,7 +40,7 @@ export class HotelDetailComponent {
     })
 
     effect(() => {
-      if (this.user()?.role === Roles.USER && !this.hotel()?.active) {
+      if (this.user()?.role === Roles.USER && this.hotel()?.active === false) {
         this.router.navigateByUrl('/')
       }
     })

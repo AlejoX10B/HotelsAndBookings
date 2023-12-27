@@ -1,0 +1,205 @@
+<form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+    <header class="mb-5">
+        <p-toolbar>
+            <ng-template pTemplate="start">
+                <h1>Generar Reservación</h1>
+            </ng-template>
+
+            <ng-template pTemplate="end">
+                <div class="flex gap-2">
+                    <p-button label="Limpiar"
+                                icon="pi pi-eraser"
+                                severity="secondary"
+                                type="reset"/>
+
+                    <p-button label="Reservar"
+                                icon="pi pi-bookmark"
+                                severity="success"
+                                type="submit"/>
+                </div>
+            </ng-template>
+        </p-toolbar>
+    </header>
+
+    <p-fieldset legend="Datos de la reserva" [toggleable]="true" formGroupName="booking">
+        <div class="grid">
+            <ul class="col list-none p-0">
+                <li class="mb-4">
+                    <div class="flex gap-2 mb-2">
+                        <i class="pi pi-building text-primary"></i>
+                        <label class="font-bold">Hotel: </label>
+                    </div>
+                    <span class="ml-4">{{ hotel()?.name }}</span>
+                </li>
+                <li class="mb-4">
+                    <div class="flex gap-2 mb-2">
+                        <i class="pi pi-map-marker text-primary"></i>
+                        <label class="font-bold">Ubicación: </label>
+                    </div>
+                    <span class="ml-4">{{ hotel()?.location }}</span>
+                </li>
+            </ul>
+
+            <ul class="col list-none p-0">
+                <li class="mb-4">
+                    <div class="flex gap-2 mb-2">
+                        <i class="pi pi-building text-primary"></i>
+                        <label class="font-bold">Habitación: </label>
+                    </div>
+                    <span class="ml-4">
+                        {{ (hotel()?.current_room?.kind || '') | RoomType }}
+                    </span>
+                </li>
+                <li class="mb-4">
+                    <div class="flex gap-2 mb-2">
+                        <i class="pi pi-map-marker text-primary"></i>
+                        <label class="font-bold">Ubicación: </label>
+                    </div>
+                    <span class="ml-4">{{ hotel()?.current_room?.location }}</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="flex align-content-center gap-3">
+            <div class="field w-full">
+                <label for="dates">Fechas de reserva</label>
+                <p-calendar errorChecker inputId="dates"
+                            selectionMode="range"
+                            iconDisplay="input"
+                            dateFormat="D, d M"
+                            placeholder="Ingreso - Salida"
+                            class="w-full"
+                            styleClass="w-full"
+                            formControlName="dates"
+                            [minDate]="minBookingDate"
+                            [showIcon]="true"
+                            [readonlyInput]="true"/>
+            </div>
+
+            <div class="field w-full">
+                <label for="num_people">Cantidad de personas</label>
+                <p-inputNumber #persons errorChecker
+                                inputId="num_people"
+                                class="w-full"
+                                styleClass="w-full"
+                                buttonLayout="horizontal"
+                                inputId="horizontal"
+                                spinnerMode="horizontal"
+                                incrementButtonIcon="pi pi-plus"
+                                decrementButtonIcon="pi pi-minus"
+                                formControlName="num_people"
+                                [showButtons]="true"
+                                [suffix]="(persons.value == 1) ? ' persona' : ' personas'"
+                                [min]="1"
+                                [step]="1"/>
+            </div>
+        </div>
+    </p-fieldset>
+
+    <p-fieldset legend="Datos personales"
+                [toggleable]="true"
+                formGroupName="client"
+                styleClass="mt-4">
+
+        <div class="flex align-content-center gap-3">
+            <div class="field w-full">
+                <label for="names">Nombres</label>
+                <input pInputText errorChecker id="names" type="text" formControlName="names">
+            </div>
+
+            <div class="field w-full">
+                <label for="lastnames">Apellidos</label>
+                <input pInputText errorChecker id="lastnames" type="text" formControlName="lastnames">
+            </div>
+        </div>
+
+        <div class="flex align-content-center gap-3">
+            <div class="field w-full">
+                <label for="birthday">Fecha de nacimiento</label>
+                <p-calendar errorChecker inputId="birthday"
+                            class="w-full"
+                            styleClass="w-full"
+                            dateFormat="dd-M-yy"
+                            iconDisplay="input"
+                            formControlName="birthday"
+                            [maxDate]="maxBirthdayDate"
+                            [showIcon]="true"/>
+            </div>
+
+            <div class="field w-full">
+                <label>Género</label>
+                <div class="flex gap-2" style="height: 42.5px;">
+                    <div class="flex align-items-center gap-3">
+                        <p-radioButton errorChecker inputId="gender_M" name="gender" value="M" 
+                                        formControlName="gender"/>
+                        <label for="gender_M">Masculino</label>
+                    </div>
+                    <div class="flex align-items-center gap-2">
+                        <p-radioButton errorChecker inputId="gender_F" name="gender" value="F"
+                                        formControlName="gender"/>
+                        <label for="gender_F">Femenino</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex align-content-center gap-3">
+            <div class="field w-full">
+                <label for="doc_type">Tipo de documento</label>
+                <p-dropdown errorChecker inputId="doc_type"
+                            class="w-full"
+                            styleClass="w-full"
+                            [options]="['A', 'B']"
+                            formControlName="doc_type"/>
+            </div>
+
+            <div class="field w-full">
+                <label for="doc_num">Número de documento</label>
+                <input pInputText errorChecker id="doc_num" type="text" formControlName="doc_num">
+            </div>
+        </div>
+
+        <div class="flex align-content-center gap-3">
+            <div class="field w-full">
+                <label for="email">Email</label>
+                <input pInputText errorChecker
+                        id="email"
+                        type="email"
+                        placeholder="user@email.com"
+                        formControlName="email">
+            </div>
+
+            <div class="field w-full">
+                <label for="phone">Celular/Teléfono</label>
+                <p-inputMask errorChecker inputId="phone"
+                            class="w-full"
+                            styleClass="w-full"
+                            mask="(999) 999-9999"
+                            placeholder="(300) 123-4567"
+                            formControlName="phone"/>
+            </div>
+        </div>
+
+    </p-fieldset>
+
+    <p-fieldset legend="Contacto de emergencia"
+                formGroupName="emergency_contact"
+                [toggleable]="true"
+                styleClass="mt-4">
+
+        <div class="field">
+            <label for="fillname">Nombres completos</label>
+            <input pInputText errorChecker id="fullname" type="text" formControlName="fullname">
+        </div>
+
+        <div class="field">
+            <label for="em_phone">Teléfono de contacto</label>
+            <p-inputMask errorChecker inputId="em_phone"
+                        class="w-full"
+                        styleClass="w-full"
+                        mask="(999) 999-9999"
+                        placeholder="(300) 123-4567"
+                        formControlName="phone"/>
+        </div>
+    </p-fieldset>
+</form>

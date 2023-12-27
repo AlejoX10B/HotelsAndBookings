@@ -64,26 +64,24 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-hotel>
-            <tr [pSelectableRow]="hotel">
-                <td routerLink="./{{hotel.id}}">
+            <tr>
+                <td>
                     <div class="flex align-items-center gap-2">
                         <img [src]="hotel.img_url" height="40px" [alt]="hotel.id" class="border-round">
                         {{ hotel.name }}
                     </div>
                 </td>
-                <td routerLink="./{{hotel.id}}">
-                    {{ hotel.location }}
-                </td>
-                <td routerLink="./{{hotel.id}}">
+                <td>{{ hotel.location }}</td>
+                <td>
                     <p class="text-overflow-ellipsis overflow-hidden w-30rem h-4rem">
                         {{ hotel.description }}
                     </p>
                 </td>
-                <td routerLink="./{{hotel.id}}">
+                <td>
                     <p-badge severity="warning" [value]="hotel.score"/>
                 </td>
                 <td>
-                    <p-button routerLink="./edit/{{hotel.id}}"
+                    <p-button routerLink="./{{hotel.id}}"
                               type="button"
                               label="Reservar"
                               icon="pi pi-bookmark"/>
