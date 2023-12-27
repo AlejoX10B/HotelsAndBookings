@@ -11,7 +11,7 @@ import { Hotel } from '../../../shared/models';
 @Component({
   selector: 'user-hotels',
   templateUrl: './user-hotels.component.html',
-  styleUrl: './user-hotels.component.scss'
+  styles: ''
 })
 export class UserHotelsComponent {
 

@@ -12,7 +12,22 @@ import { Hotel } from '../../../shared/models';
 @Component({
   selector: 'app-hotel-form',
   templateUrl: './hotel-form.component.html',
-  styleUrl: './hotel-form.component.scss'
+  styles: `
+    header {
+      z-index: 1;
+      top: -10px;
+      position: sticky;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    img { 
+      margin: 0 auto;
+      max-width: 600px;
+    }
+  `
 })
 export class HotelFormComponent implements OnInit {
 

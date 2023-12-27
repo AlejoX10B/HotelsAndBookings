@@ -29,17 +29,20 @@
                 </div>
 
                 <div class="col">
-                    <p-inputNumber #persons [showButtons]="true"
-                                    placeholder="Cantidad de personas"
-                                    buttonLayout="horizontal"
-                                    inputId="horizontal"
-                                    spinnerMode="horizontal"
-                                    incrementButtonIcon="pi pi-plus"
-                                    decrementButtonIcon="pi pi-minus"
-                                    [(ngModel)]="filters().persons"
-                                    [suffix]="(persons.value == 1) ? ' persona' : ' personas'"
-                                    [min]="1"
-                                    [step]="1"/>
+                    <p-inputNumber #persons
+                                class="w-full"
+                                styleClass="w-full"
+                                placeholder="Cantidad de personas"
+                                buttonLayout="horizontal"
+                                inputId="horizontal"
+                                spinnerMode="horizontal"
+                                incrementButtonIcon="pi pi-plus"
+                                decrementButtonIcon="pi pi-minus"
+                                [(ngModel)]="filters().persons"
+                                [suffix]="(persons.value == 1) ? ' persona' : ' personas'"
+                                [showButtons]="true"
+                                [min]="1"
+                                [step]="1"/>
                 </div>
             </div>
         </div>

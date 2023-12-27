@@ -15,7 +15,18 @@ const fb = new FormBuilder()
 @Component({
   selector: 'booking-form',
   templateUrl: './booking-form.component.html',
-  styleUrl: './booking-form.component.scss'
+  styles: `
+    form {
+      margin: 0 auto;
+      max-width: 768px;
+    }
+
+    header {
+      z-index: 1;
+      top: -10px;
+      position: sticky;
+    }
+  `
 })
 export class BookingFormComponent implements OnInit {
 
