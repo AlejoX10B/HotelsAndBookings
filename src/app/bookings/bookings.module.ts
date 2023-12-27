@@ -8,13 +8,17 @@ import { ErrorCheckerDirective } from '../shared/directives/error-checker.direct
 import { BookingsRoutingModule } from './bookings.routes';
 
 import { BookingsComponent } from './pages/bookings/bookings.component';
+import { AgentBookingsComponent } from './components/agent-bookings/agent-bookings.component';
+import { UserBookingsComponent } from './components/user-bookings/user-bookings.component';
 import { BookingFormComponent } from './components/booking-form/booking-form.component';
 
 
 @NgModule({
   declarations: [
     BookingsComponent,
-    BookingFormComponent
+    AgentBookingsComponent,
+    UserBookingsComponent,
+    BookingFormComponent,
   ],
   imports: [
     CommonModule,

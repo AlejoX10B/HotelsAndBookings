@@ -97,18 +97,20 @@
                 </div>
                 <p class="text-justify">{{ room.description }}</p>
             </div>
-
-            <ng-template pTemplate="footer">
-                <div class="w-full flex justify-content-center">
-                    <p-button class="w-full"
-                            styleClass="w-full"
-                            label="Seleccionar"
-                            icon="pi pi-bookmark"
-                            [outlined]="true"
-                            queryParamsHandling="merge"
-                            routerLink="/bookings/add/{{hotel()?.id}}/{{room.kind}}"/>
-                </div>
-            </ng-template>
+            
+            @if(user()?.role === Roles.USER) {
+                <ng-template pTemplate="footer">
+                    <div class="w-full flex justify-content-center">
+                        <p-button class="w-full"
+                                styleClass="w-full"
+                                label="Seleccionar"
+                                icon="pi pi-bookmark"
+                                [outlined]="true"
+                                queryParamsHandling="merge"
+                                routerLink="/bookings/add/{{hotel()?.id}}/{{room.kind}}"/>
+                    </div>
+                </ng-template>
+            }
         </p-panel>
     }
 </section>

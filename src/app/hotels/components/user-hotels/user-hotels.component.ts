@@ -1,10 +1,11 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { NavigationBehaviorOptions, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { HotelsService } from '../../../shared/services';
 
-import { Hotel } from '../../../shared/models';
 import { filterNullOptions } from '../../../shared/constants';
+
+import { Hotel } from '../../../shared/models';
 
 
 @Component({
@@ -20,8 +21,8 @@ export class UserHotelsComponent {
   
   filters = signal<any>({
     location: '',
-    dates: null,
-    persons: null
+    dates: [new Date(), new Date()],
+    persons: 1
   })
 
   hotels = computed<Hotel[]>(() => {

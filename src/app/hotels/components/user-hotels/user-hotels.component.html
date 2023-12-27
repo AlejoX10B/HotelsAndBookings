@@ -86,7 +86,8 @@
                     <p-button (onClick)="navigate(hotel.id)"
                               type="button"
                               label="Reservar"
-                              icon="pi pi-bookmark"/>
+                              icon="pi pi-bookmark"
+                              [disabled]="hotel.rooms.length == 0"/>
                 </td>
             </tr>
         </ng-template>

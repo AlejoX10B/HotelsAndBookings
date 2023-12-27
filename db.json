@@ -9,11 +9,27 @@
       "role": "AGENT"
     },
     {
+      "id": "df58386a-ff1e-4164-b7c7-e0d9bdf69f54",
+      "email": "luisa@email.com",
+      "password": "12345",
+      "name": "Luisa",
+      "lastname": "Andrade",
+      "role": "AGENT"
+    },
+    {
       "id": "b564db20-911f-4e2f-b65b-f85233767cfe",
       "email": "adri@email.com",
       "password": "12345",
       "name": "Adriana",
       "lastname": "Rojas",
+      "role": "USER"
+    },
+    {
+      "id": "a79d9069-c32a-4a5d-836b-543cb065eba0",
+      "email": "camilo@email.com",
+      "password": "12345",
+      "name": "Camilo",
+      "lastname": "Torres",
       "role": "USER"
     }
   ],
@@ -72,21 +88,21 @@
   "bookings": [
     {
       "user_id": "b564db20-911f-4e2f-b65b-f85233767cfe",
-      "booking": {
-        "hotel_id": 2,
-        "room_type": "excecutive",
-        "dates": [
-          "2023-12-26T05:00:00.000Z",
-          "2023-12-31T05:00:00.000Z"
-        ],
-        "persons": 1
-      },
+      "hotel_id": 2,
+      "room_type": "excecutive",
+      "cost": 759600,
+      "taxes": 12,
+      "dates": [
+        "2023-12-26T05:00:00.000Z",
+        "2023-12-31T05:00:00.000Z"
+      ],
+      "persons": 1,
       "client": {
         "names": "Diana",
         "lastnames": "Beltran",
         "birthday": "2000-10-15T05:00:00.000Z",
         "gender": "F",
-        "doc_type": "A",
+        "doc_type": "CC",
         "doc_num": "10657894152",
         "email": "diana@email.com",
         "phone": "(300) 245-9687"

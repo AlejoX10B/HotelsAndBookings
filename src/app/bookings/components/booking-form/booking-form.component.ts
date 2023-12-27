@@ -6,7 +6,7 @@ import { MessageService } from 'primeng/api';
 
 import { AuthService, BookingsService, HotelsService } from '../../../shared/services';
 
-import { alphabeticValidator, emailValidator, markAllAsDirty, parseUrlToDates } from '../../../shared/constants';
+import { DocTypeOptions, alphabeticValidator, emailValidator, markAllAsDirty, parseUrlToDates } from '../../../shared/constants';
 
 
 const fb = new FormBuilder()
@@ -48,13 +48,13 @@ export class BookingFormComponent implements OnInit {
   })
 
   bookingForm = fb.group({
-    user_id:      [null],
-    booking: fb.group({
-      hotel_id:   [null],
-      room_type:  [null],
-      dates:      [null, [Validators.required]],
-      persons:    [1, [Validators.required, Validators.min(1)]],
-    }),
+    user_id:    [null],
+    hotel_id:   [null],
+    room_type:  [null],
+    cost:       [0],
+    taxes:      [0],
+    dates:      [null, [Validators.required]],
+    persons:    [1, [Validators.required, Validators.min(1)]],
     client: fb.group({
       names:      [null, [Validators.required, alphabeticValidator()]],
       lastnames:  [null, [Validators.required, alphabeticValidator()]],
@@ -73,6 +73,8 @@ export class BookingFormComponent implements OnInit {
 
   maxBirthdayDate = new Date()
   minBookingDate = new Date()
+
+  readonly DocTypeOptions = DocTypeOptions
   
 
   constructor() {
@@ -92,12 +94,12 @@ export class BookingFormComponent implements OnInit {
 
     this.bookingForm.patchValue({
       user_id: this.user()?.id as never,
-      booking: {
-        hotel_id: this.hotelId as never,
-        room_type: this.roomType as never,
-        dates: parseUrlToDates(params!['dates']) as never || null,
-        persons: Number(params!['persons']) || 1
-      }
+      hotel_id: this.hotelId as never,
+      room_type: this.roomType as never,
+      cost: this.hotel()?.current_room?.cost,
+      taxes: this.hotel()?.current_room?.taxes,
+      dates: parseUrlToDates(params!['dates']) as never || null,
+      persons: Number(params!['persons']) || 1
     })
   }
 
