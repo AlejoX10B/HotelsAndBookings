@@ -1,11 +1,12 @@
 import { Component, Input, OnInit, computed, effect, inject, numberAttribute } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MessageService } from 'primeng/api';
 
 import { AuthService, HotelsService } from '../../../shared/services';
 
-import { alphabeticValidator, emailValidator, markAllAsDirty } from '../../../shared/constants';
+import { alphabeticValidator, emailValidator, markAllAsDirty, parseUrlToDates } from '../../../shared/constants';
 
 
 const fb = new FormBuilder()
@@ -19,6 +20,7 @@ const fb = new FormBuilder()
 export class BookingFormComponent implements OnInit {
 
   private router = inject(Router)
+  private activatedRoute = inject(ActivatedRoute)
   private authService = inject(AuthService)
   private hotelsService = inject(HotelsService)
   private msgService = inject(MessageService)
@@ -27,6 +29,7 @@ export class BookingFormComponent implements OnInit {
   @Input({ transform: numberAttribute }) hotelId!: number
   @Input() roomType!: string
 
+  params = toSignal(this.activatedRoute.queryParams)
 
   user = computed(() => this.authService.user())
   hotel = computed(() => {
@@ -44,12 +47,12 @@ export class BookingFormComponent implements OnInit {
   })
 
   bookingForm = fb.group({
-    user_id:    [null],
+    user_id:      [null],
     booking: fb.group({
       hotel_id:   [null],
       room_type:  [null],
       dates:      [null, [Validators.required]],
-      num_people: [1, [Validators.required, Validators.min(1)]],
+      persons:     [1, [Validators.required, Validators.min(1)]],
     }),
     client: fb.group({
       names:      [null, [Validators.required, alphabeticValidator()]],
@@ -84,11 +87,15 @@ export class BookingFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    const params = this.params()
+
     this.bookingForm.patchValue({
       user_id: this.user()?.id as never,
       booking: {
         hotel_id: this.hotelId as never,
         room_type: this.roomType as never,
+        dates: parseUrlToDates(params!['dates']) as never || null,
+        persons: Number(params!['persons']) || 1
       }
     })
   }
@@ -106,7 +113,7 @@ export class BookingFormComponent implements OnInit {
         detail: 'Revisa los datos ingresados'
       })
       markAllAsDirty(form)
-      
+
       return
     }
   }

@@ -1,8 +1,10 @@
 import { Component, computed, inject, signal } from '@angular/core';
+import { NavigationBehaviorOptions, Router } from '@angular/router';
 
 import { HotelsService } from '../../../shared/services';
 
 import { Hotel } from '../../../shared/models';
+import { filterNullOptions } from '../../../shared/constants';
 
 
 @Component({
@@ -12,19 +14,23 @@ import { Hotel } from '../../../shared/models';
 })
 export class UserHotelsComponent {
 
-  
+  private router = inject(Router)
   private hotelsService = inject(HotelsService)
   
   
-  filter = signal<string|null>(null)
+  filters = signal<any>({
+    location: '',
+    dates: null,
+    persons: null
+  })
 
   hotels = computed<Hotel[]>(() => {
     const hotels = this.hotelsService.userHotels()
 
-    if (!this.filter()) return hotels
+    if (!this.filters()) return hotels
 
     return hotels.filter(hotel => {
-      return hotel.location.toLowerCase().includes(String(this.filter()).toLowerCase())
+      return hotel.location.toLowerCase().includes(String(this.filters().location))
     })
   })
   
@@ -36,7 +42,29 @@ export class UserHotelsComponent {
   }
 
   filterHotels(input: any) {
-    this.filter.set(input.value.toLowerCase())
+    this.filters.update(values => {
+      return {
+        ...values,
+        location: input.value.toLowerCase()
+      }
+    })
+  }
+
+  navigate(hotelId: number) {
+    const filters = this.filters()
+
+    console.log(filters)
+
+    if (filters.persons || (filters.dates && filters.dates.length > 0)) {
+      this.router.navigate(['/hotels', hotelId], {
+        queryParams: filterNullOptions(filters),
+        queryParamsHandling: 'merge'
+      })
+
+      return
+    }
+
+    this.router.navigate(['/hotels', hotelId])
   }
 
 }

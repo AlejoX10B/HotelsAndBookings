@@ -24,6 +24,7 @@
                                 placeholder="Fechas de ingreso y salida"
                                 [minDate]="minDate"
                                 [showIcon]="true"
+                                [(ngModel)]="filters().dates"
                                 [readonlyInput]="true"/>
                 </div>
 
@@ -35,6 +36,7 @@
                                     spinnerMode="horizontal"
                                     incrementButtonIcon="pi pi-plus"
                                     decrementButtonIcon="pi pi-minus"
+                                    [(ngModel)]="filters().persons"
                                     [suffix]="(persons.value == 1) ? ' persona' : ' personas'"
                                     [min]="1"
                                     [step]="1"/>
@@ -81,7 +83,7 @@
                     <p-badge severity="warning" [value]="hotel.score"/>
                 </td>
                 <td>
-                    <p-button routerLink="./{{hotel.id}}"
+                    <p-button (onClick)="navigate(hotel.id)"
                               type="button"
                               label="Reservar"
                               icon="pi pi-bookmark"/>

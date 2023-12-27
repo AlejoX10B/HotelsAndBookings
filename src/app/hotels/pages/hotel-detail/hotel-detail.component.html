@@ -105,6 +105,7 @@
                             label="Seleccionar"
                             icon="pi pi-bookmark"
                             [outlined]="true"
+                            queryParamsHandling="merge"
                             routerLink="/bookings/add/{{hotel()?.id}}/{{room.kind}}"/>
                 </div>
             </ng-template>

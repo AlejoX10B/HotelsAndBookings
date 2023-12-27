@@ -77,9 +77,9 @@
             </div>
 
             <div class="field w-full">
-                <label for="num_people">Cantidad de personas</label>
+                <label for="persons">Cantidad de personas</label>
                 <p-inputNumber #persons errorChecker
-                                inputId="num_people"
+                                inputId="persons"
                                 class="w-full"
                                 styleClass="w-full"
                                 buttonLayout="horizontal"
@@ -87,7 +87,7 @@
                                 spinnerMode="horizontal"
                                 incrementButtonIcon="pi pi-plus"
                                 decrementButtonIcon="pi pi-minus"
-                                formControlName="num_people"
+                                formControlName="persons"
                                 [showButtons]="true"
                                 [suffix]="(persons.value == 1) ? ' persona' : ' personas'"
                                 [min]="1"
